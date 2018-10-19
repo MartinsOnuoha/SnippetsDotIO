@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar');
             $table->string('slug');
             $table->boolean('gender');
+            $table->enum('user_type', ['talent', 'investor']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
