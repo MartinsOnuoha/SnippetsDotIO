@@ -61,6 +61,16 @@
                                         {{ __('Logout') }}
                                     </a>
 
+                                    @if(Auth::check())
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        {{ __('Dashboard') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('profile', ['slug' => Auth::user()->slug ]) }}">
+                                        {{ __('Profile') }}
+                                    </a>
+                                    @endif
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
