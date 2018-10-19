@@ -58,6 +58,23 @@
 
 
                         <div class="form-group row">
+                            <label for="user_type" class="col-md-4 col-form-label text-md-right">{{ __('Account Type') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="user_type" class="form-control{{ $errors->has('user_type') ? ' is-invalid' : '' }}" name="user_type">
+                                    <option value="investor">Investor</option>
+                                    <option value="talent">Talent</option>
+                                </select>
+
+                                @if ($errors->has('user_type'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('user_type') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
