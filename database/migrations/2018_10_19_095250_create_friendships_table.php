@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfilesTable extends Migration
+class CreateFriendshipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('friendships', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->enum('user_type', ['talent', 'investor']);
-            $table->string('location')->nullable();
-            $table->text('about')->nullable();
+            $table->integer('requester');
+            $table->integer('user_requested');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('friendships');
     }
 }
