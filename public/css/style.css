@@ -1,0 +1,198 @@
+.navbar{
+  background: #fff;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 2, 0),
+  0 1px 1px 0 rgba(0, 0, 0, .12);
+}
+
+.navbar-toggler-icon{
+  color: #000;
+}
+
+.nav-link{
+  color: #000;
+}
+
+.brand-header{
+  padding: 150px 0px 0px 0px;
+  height: 100vh;
+}
+
+
+.snippet-text{
+  font-size: 50px;
+  font-weight: lighter;
+  width: 400px;
+  line-height: 60px;
+  color: #606676;
+}
+
+.snippet-text-two{
+  font-size: 18px;
+  font-weight: lighter;
+  width: 450px;
+  color: #86939e;
+}
+/* 
+.snippet-pad{
+  padding-top: 50px;
+} */
+
+.input-group-text{
+  background: unset;
+  border-left: 2px solid #e1e8ee;
+  border-top: 2px solid #e1e8ee;
+  border-bottom: 2px solid #e1e8ee;
+  border-right: unset;
+}
+
+.form-control {
+  border: 2px solid #e1e8ee;
+  height: 50px;
+}
+
+.fa-envelope-o{
+  color: #e1e8ee;
+}
+
+.mar{
+  margin: 0;
+  padding: 0;
+}
+
+.form-control::placeholder{
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+.account{
+  font-size: 12px;
+  color: #86939e;
+}
+
+
+/* ////////////// */
+
+.barnd-cards{
+  padding: 200px 0px 100px 0px;
+  background: #2166e0;
+}
+
+.card-height{
+  height: 300px;
+}
+
+.card-con-two{
+  position: relative;
+  top: -100px;
+}
+
+.snippet-card-pad{
+  padding-top: 100px;
+}
+
+.card-icon{
+  font-size: 50px;
+  padding-top: 10px;
+}
+
+/* //////// */
+.third-sec{
+  padding: 100px 0px;
+  /* background: #f5f6f9; */
+}
+
+.card-height-1{
+  height: 250px;
+}
+
+.card-list{
+  height: 100%;
+  border: 0;
+}
+
+.blue-card{
+  background: #2166e0;
+  height: 100px;
+  width: 100%;
+  /* position: absolute; */
+  margin-top: 50px;
+}
+
+.plus{
+  color: #fff;
+  font-size: 30px;
+  line-height: 20px;
+  padding-top: 10px;
+}
+
+.plus span{
+  color: #fff;
+  font-size: 15px;
+}
+
+#features{
+  background: red;
+}
+
+.img-round{
+  height: 100px;
+  width: 100px;
+  background: #6348af;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.dev{
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.dev-p{
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+.mentor{
+  padding: 00px 0px 50px 0px;
+  font-size: 30px;
+
+}
+
+.card{
+  border: 0;
+}
+
+.artisan{
+  padding: 100px 0px;
+}
+
+
+/* ///////// */
+.artisan-card-height{
+  height: 100%;
+}
+
+.artisan-card:hover {
+  /* border: 1px solid #5cd274; */
+  background: -webkit-linear-gradient(0deg, #bfacff 0%, #795fff 100%);
+  color: #fff;
+}
+
+.artisan-card{
+  height: 100%;
+  border: 0;
+}
+
+.artisan-card img{
+  width: 50px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.featured{
+  padding: 0px 0px 50px 0px;
+}
+
+.row-pad{
+  padding: 40px 0px 0px 0px;
+}
