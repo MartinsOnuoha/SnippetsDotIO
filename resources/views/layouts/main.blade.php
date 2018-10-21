@@ -280,10 +280,14 @@
                                         <img class="img-circle avatar" src="assets/images/avatar1.png" width="40" height="40" alt="">
                                     </a>
                                     <ul class="dropdown-menu dropdown-list" role="menu">
-                                        <li role="presentation"><a href="profile.html"><i class="fa fa-user"></i>Profile</a></li>
+                                        <li role="presentation"><a href="{{ url('/home') }}"><i class="fa fa-user"></i>Profile</a></li>
                                         <li role="presentation"><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox<span class="badge badge-success pull-right">4</span></a></li>
                                         <li role="presentation" class="divider"></li>
-                                        <li role="presentation"><a href="login.html"><i class="fa fa-sign-out m-r-xs"></i>Log out</a></li>
+                                        <li role="presentation"><a href="{{ route('logout') }}"  onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="fa fa-sign-out m-r-xs"></i>{{ __('Logout') }}</a>
+                                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -301,7 +305,7 @@
                     <ul class="menu accordion-menu">
                         <li class="nav-heading"><span>Navigation</span></li>
                         <li><a href="index.html"><span class="menu-icon icon-speedometer"></span><p>Dashboard</p></a></li>
-                        <li class="active"><a href="profile.html"><span class="menu-icon icon-user"></span><p>Profile</p></a></li>
+                        <li class="active"><a href="{{ url('/home') }}"><span class="menu-icon icon-user"></span><p>Profile</p></a></li>
                         <li class="droplink"><a href="#"><span class="menu-icon icon-envelope-open"></span><p>Mailbox</p><span class="arrow"></span></a>
                             <ul class="sub-menu">
                                 <li><a href="inbox.html">Inbox</a></li>
@@ -435,5 +439,5 @@
         
     </body>
 
-<!-- Mirrored from lambdathemes.in/admin2/profile.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 17 May 2016 01:57:23 GMT -->
+<!-- Mirrored from lambdathemes.in/admin2/{{ url('/home') }} by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 17 May 2016 01:57:23 GMT -->
 </html>

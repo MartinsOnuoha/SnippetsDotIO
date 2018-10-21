@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-md-3 center">
                             <div class="login-box">
-                                <a href="index.html" class="logo-name text-lg text-center text-white">{{ config('app.name', 'Snippet') }}</a>
+                                <a href="{{ url('/') }}" class="logo-name text-lg text-center text-white">{{ config('app.name', 'Snippet') }}</a>
                                 <p class="text-center m-t-md text-white">Create a {{ config('app.name', 'Snippet') }} account</p>
                                 <form class="m-t-md" method="POST" action="{{ route('register') }}">
                                     @csrf
