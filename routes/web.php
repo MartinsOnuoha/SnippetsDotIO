@@ -8,22 +8,37 @@ Route::get('/', function () {
 
 
 
-Route::get('/add', function() {
-    return \App\User::find(8)->add_friend(1);
+Route::get('/add_friend', function() {
+    return \App\User::find(1)->addFriend(2);
 });
 
-Route::get('/accept', function() {
-    return \App\User::find(6)->accept_friend(1);
+Route::get('/accept_friend', function() {
+    return \App\User::find(2)->acceptFriend(1);
 });
 
 Route::get('/friends', function() {
-    return \App\User::find(1)->get_friends();
+    return \App\User::find(1)->getFriends();
+});
+
+Route::get('/ids', function() {
+    return \App\User::find(1)->getFriendsId();
 });
 
 Route::get('/pending', function() {
-    return \App\User::find(1)->get_pending_requests();
+    return \App\User::find(2)->getPendingRequests();
 });
 
+Route::get('/isFriend', function() {
+    return \App\User::find(1)->isFriendsWith(10);
+});
+
+Route::get('/has', function() {
+    return \App\User::find(1)->hasPendingRequestFrom(2);
+});
+
+Route::get('/sent', function() {
+    return \App\User::find(1)->getPendingRequestSent();
+});
 
 
 

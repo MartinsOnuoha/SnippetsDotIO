@@ -8,8 +8,22 @@ trait Friendable
 {
 
     // Add Friend
-    public function add_friend($user_requested_id)
+    public function addFriend($user_requested_id)
     {
+        // User should not Add himself
+        if ($this->id == $user_requested_id) {
+            return 0;
+        }
+        if ($this->hasPendingRequestTo($user_requested_id) === 1) {
+            return 'Request already sent';
+        }
+        if ($this->isFriendsWith($user_requested_id)) {
+            return 'Already friends';
+        }
+        if ($this->hasPendingRequestFrom($user_requested_id) === 1) {
+            return $this->acceptFriend($user_requested_id);
+        }
+
         $Friendship = Friendship::create([
             'requester' => $this->id,
             'user_requested' => $user_requested_id
@@ -23,8 +37,11 @@ trait Friendable
 
 
     // Accept Friend
-    public function accept_friend($requester)
+    public function acceptFriend($requester)
     {
+        if ($this->hasPendingRequestFrom($requester) === 0) {
+            return 0;
+        }
         $friendship = Friendship::where('requester', $requester)
                                 ->where('user_requested', $this->id)
                                 ->first();
@@ -34,15 +51,15 @@ trait Friendable
                 'status' => 1,
             ]);
 
-            return response()->json($friendship, 200);
+            return 1;
         }
 
-        return response()->json('failed', 501);
+        return 0;
     }
 
 
     // Get All Friends
-    public function get_friends()
+    public function getFriends()
     {
         $friends1 = array();
 
@@ -69,8 +86,9 @@ trait Friendable
         
     }
 
-    // Pending Requests
-    public function get_pending_requests()
+
+    // Get Pending Requests
+    public function getPendingRequests()
     {
         $pending_friends = array();
 
@@ -85,4 +103,80 @@ trait Friendable
         return $pending_friends;
     }
     
+
+    // Get Pending Request IDs
+    public function getPendingRequestsIds()
+    {
+        return collect($this->getPendingRequests())->pluck('id')->toArray();
+    }
+
+    // Get Pending Requests sent
+    public function getPendingRequestSent()
+    {
+        $pending_requests = array();
+
+        $friendships = Friendship::where('status', 0)
+                                ->where('requester', $this->id)
+                                ->get();
+        
+        foreach ($friendships as $friendship):
+            array_push($pending_requests, \App\User::find($friendship->user_requested));
+        endforeach;
+
+        return $pending_requests;
+    }
+
+
+    // Get pending Request sent IDs
+    public function getPendingRequestSentId()
+    {
+        return collect($this->getPendingRequestSent())->pluck('id')->toArray();
+    }
+
+
+    // Get only IDs of friends
+    public function getFriendsId()
+    {
+        return collect($this->getFriends())->pluck('id');
+    }
+
+
+
+    // Check if IsFriendsWith
+    public function isFriendsWith($user_id)
+    {
+        if (in_array($user_id, $this->getFriendsId()->toArray())) {
+            # return response()->json('true', 200);
+            return 1;
+        } else {
+            # return response()->json('false', 404);
+            return 0;
+        }
+    }
+
+
+    // Check if you have a pending request from a User
+    public function hasPendingRequestFrom($user_id)
+    {
+        $pending_req = Friendship::where('status', 0)
+                                ->where('requester', $user_id)
+                                ->get();
+        if ($pending_req) {
+            # return response()->json('true', 200);
+            return 1;
+        } else {
+            # return response()->json('false', 404);
+            return 0;
+        }
+    }
+
+    // Check if you have a pending request to a User
+    public function hasPendingRequestTo($user_id)
+    {
+        if (in_array($user_id, $this->getPendingRequestSentId())) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }
