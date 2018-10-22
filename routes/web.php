@@ -9,11 +9,11 @@ Route::get('/', function () {
 
 
 Route::get('/add_friend', function() {
-    return \App\User::find(1)->addFriend(2);
+    return \App\User::find(1)->addFriend(5);
 });
 
 Route::get('/accept_friend', function() {
-    return \App\User::find(2)->acceptFriend(1);
+    return \App\User::find(1)->acceptFriend(5);
 });
 
 Route::get('/friends', function() {
@@ -25,7 +25,7 @@ Route::get('/ids', function() {
 });
 
 Route::get('/pending', function() {
-    return \App\User::find(2)->getPendingRequests();
+    return \App\User::find(1)->getPendingRequests();
 });
 
 Route::get('/isFriend', function() {
@@ -40,7 +40,17 @@ Route::get('/sent', function() {
     return \App\User::find(1)->getPendingRequestSent();
 });
 
+Route::get('/count', function() {
+    return \App\User::find(1)->countFriends();
+});
 
+Route::get('/cancle', function() {
+    return \App\User::find(1)->canclePendingRequest(3);
+});
+
+Route::get('/talents', function() {
+    return \App\User::find(1)->getAllTalents();
+});
 
 Auth::routes();
 

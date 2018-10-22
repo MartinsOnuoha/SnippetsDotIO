@@ -58,26 +58,27 @@
                     <div class="col-md-4">
                         <div class="snippet-pad">
                             <p class="snippet-text">
-                                Snippet makes it smooth
+                                Snippet <span id="changeWord">connects<span>.
                             </p>
                             <p class="snippet-text-two">
-                                When your team needs to kick off a project, hire a new employee, deploy some code, review a sales contract,
-                                finalize
-                                next year's budget.
+                                Whether you need the best of talents to promote your brand, 
+                                or that perfect gig to kickstart your career.<br>
+                                Snippet has got you covered  🚀.
                             </p>
                         </div>
 
                         <div class="col-md-8 mr-auto mar">
                             <!-- <input type="text" class="form-control"> -->
                             <div class="input-group mb-3 mt-4">
-                                <input type="search" class="form-control" placeholder="Email Address">
+                                {{-- <input type="search" class="form-control" placeholder="Email Address"> --}}
+                                <a href="{{ route('register') }}" class="btn btn-material btn-block my-0" type="submit">Get Started</a>
                             </div>
                             @if (Route::has('login'))
                                 @auth
 
                                 @else
                                     <p class="account">Already have Account ?
-                                        <a href="">
+                                        <a href="{{ route('login') }}">
                                             <span class="">Sign In</span>
                                         </a>
                                     </p>
@@ -87,7 +88,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="snippet-pad">
-                            <img src="{{ asset('img//assets.png') }}" alt="" width="100%">
+                            <img src="{{ asset('img/home.png') }}" alt="" width="100%">
                         </div>
                     </div>
 
@@ -389,14 +390,25 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/owl.carousel.js') }}"></script>
+    {{-- Typed Js --}}
+    <script src="{{ asset('js/typed.min.js') }}"></script>
+
     <script type="text/javascript">
+
+        var typed2 = new Typed('#changeWord', {
+		    strings: ['connects', 'inspires', 'grows'],
+		    typeSpeed: 50,
+		    backSpeed: 30,
+		    fadeOut: true,
+		    loop: true,
+		 });
         var owl = $('.owl-carousel');
         owl.owlCarousel({
 
             loop: true,
             margin: 9,
             autoplay: true,
-            autoplayTimeout: 5000,
+            autoplayTimeout: 9000,
             autoplayHoverPause: true,
 
             responsive: {

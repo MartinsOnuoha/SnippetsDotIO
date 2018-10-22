@@ -13,7 +13,7 @@
                                 <form class="m-t-md" method="POST" action="{{ route('register') }}">
                                     @csrf
                                     <div class="form-group">
-                                       <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Name" required autofocus>
+                                       <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} round" name="name" value="{{ old('name') }}" placeholder="Name" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -22,74 +22,48 @@
                                 @endif
                                     </div>
                                     <div class="form-group">
-                                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required>
+                                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} round" name="email" value="{{ old('email') }}" placeholder="Email" required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-<<<<<<< HEAD
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender">
-                                    <option value="1">Male</option>
-                                    <option value="0">Female</option>
-                                </select>
-
-                                @if ($errors->has('gender'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('gender') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label for="user_type" class="col-md-4 col-form-label text-md-right">{{ __('Account Type') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="user_type" class="form-control{{ $errors->has('user_type') ? ' is-invalid' : '' }}" name="user_type">
-                                    <option value="investor">Investor</option>
-                                    <option value="talent">Talent</option>
-                                </select>
-
-                                @if ($errors->has('user_type'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('user_type') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-=======
                                     </div>
-                                    <div class="form-group">
-                                        <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender">
-                                            <option value="1">Male</option>
-                                            <option value="0">Female</option>
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }} round" name="gender">
+                                                    <option value="1">Male</option>
+                                                    <option value="0">Female</option>
+                                                </select>
+        
+                                                @if ($errors->has('gender'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('gender') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select id="user_type" class="form-control{{ $errors->has('user_type') ? ' is-invalid' : '' }} round" name="user_type">
+                                                    <option selected>You are?</option>
+                                                    <option value="investor">An Investor</option>
+                                                    <option value="talent">A Talent</option>
+                                                </select>
+        
+                                                @if ($errors->has('user_type'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('user_type') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                        @if ($errors->has('gender'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('gender') }}</strong>
-                                            </span>
-                                        @endif
-                                </div>
                                     <div class="form-group">
-                                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
->>>>>>> talents
+                                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} round" name="password" placeholder="Password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -98,14 +72,14 @@
                                 @endif
                                     </div>
                                     <div class="form-group">
-                                        <input id="password-confirm" type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation" required>
+                                        <input id="password-confirm" type="password" class="form-control round" placeholder="Confirm Password" name="password_confirmation" required>
                                     </div>
-                                    <label>
-                                        <input type="checkbox" class="text-white"> Agree the terms and policy
-                                    </label>
-                                    <button type="submit" class="btn btn-success btn-block m-t-xs">{{ __('Register') }}</button>
+                                    {{-- <label>
+                                        <input type="checkbox" class="text-white" required> Agree the terms and policy
+                                    </label> --}}
+                                    <button type="submit" class="btn btn-success btn-block m-t-xs round">{{ __('Register') }}</button>
                                     <p class="text-center m-t-xs text-sm text-white">Already have an account?</p>
-                                    <a href="{{ route('login') }}" class="btn btn-default btn-block m-t-xs">Login</a>
+                                    <a href="{{ route('login') }}" class="btn btn-default btn-block m-t-xs round">Login</a>
                                 </form>
                                 <p class="text-center m-t-xs text-sm text-white">2018 &copy;  {{ config('app.name', 'Snippet') }}.</p>
                             </div>

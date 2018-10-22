@@ -196,3 +196,12 @@
 .row-pad{
   padding: 40px 0px 0px 0px;
 }
+
+.btn-material {
+  background-color: #000;
+}
+.btn-material:hover {
+  color: #000;
+  background: #FFF;
+  border: 0;
+}

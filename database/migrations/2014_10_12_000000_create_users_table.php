@@ -18,8 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('avatar');
+            $table->enum('user_type', ['talent', 'investor']);
             $table->string('slug');
-            $table->boolean('gender');
+            $table->integer('gender');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
