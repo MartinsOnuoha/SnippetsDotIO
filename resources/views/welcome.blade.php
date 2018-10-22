@@ -107,6 +107,7 @@
                                 Snippet Main Features
                             </p>
                             <p class="text-white">
+                                BE FIRST
                                 When your team needs to kick off a project, hire a new employee, deploy some code, review a sales contract,
                                 finalize
                                 next year's budget.
@@ -125,8 +126,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card-con">
-                                        <div class="card text-center card-height">
+                                        <div class="card text-center card-height">     
+                                            <div class="car-title">
+                                                BE FIRST
+                                            </div>
+                                            <div class="body">
 
+                                            </div>
                                         </div>
                                         <div class="card text-center mt-3 card-height">
 
