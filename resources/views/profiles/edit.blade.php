@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-5">
@@ -31,6 +30,14 @@
                             <label for="location">Location</label>
                             <input type="text" name="location" class="form-control" value="{{ $user->profile->location }}" required>
                         </div>
+                        
+                             @if($user->profile->user_type == "talent")
+                                <div class="form-group">
+                                     <label for="talents">Talents</label>
+                                    <input type="text" name="talents" class="form-control" value="{{ $user->profile->talents }}" data-role="tagsinput" required>
+                                </div>
+                            @endif
+                           
                         <div class="form-group">
                             <label for="avatar">Upload Profile Picture</label>
                             <input type="file" name="avatar" class="form-control" accept="image/*">

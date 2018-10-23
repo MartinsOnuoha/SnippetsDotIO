@@ -35,6 +35,8 @@ class ProfilesController extends Controller
         ]);
 
         if($r->hasFile('avatar')) {
+           /* $user = User::where('id', Auth::user()->id)->first()
+                        ->update(['avatar' => $r->avatar->store('public/avatars')]);*/
             Auth::user()->update([
                 'avatar' => $r->avatar->store('public/avatars'),
             ]);

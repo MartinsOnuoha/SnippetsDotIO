@@ -29,54 +29,14 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-<<<<<<< HEAD
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+                        
 
-                            <div class="col-md-6">
-                                <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender">
-                                    <option value="1">Male</option>
-                                    <option value="0">Female</option>
-                                </select>
-
-                                @if ($errors->has('gender'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('gender') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label for="user_type" class="col-md-4 col-form-label text-md-right">{{ __('Account Type') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="user_type" class="form-control{{ $errors->has('user_type') ? ' is-invalid' : '' }}" name="user_type">
-                                    <option value="investor">Investor</option>
-                                    <option value="talent">Talent</option>
-                                </select>
-
-                                @if ($errors->has('user_type'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('user_type') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-=======
-                                    </div>
                                     <div class="form-group">
                                         <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender">
+                                            <option>Gender:</option>
                                             <option value="1">Male</option>
                                             <option value="0">Female</option>
                                         </select>
@@ -87,10 +47,23 @@
                                             </span>
                                         @endif
                                 </div>
+
+
+                        <div class="form-group ">
+                                <select id="user_type" class="form-control{{ $errors->has('user_type') ? ' is-invalid' : '' }}" name="user_type">
+                                    <option>Account Type</option>
+                                    <option value="investor">Investor</option>
+                                    <option value="talent">Talent</option>
+                                </select>
+
+                                @if ($errors->has('user_type'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('user_type') }}</strong>
+                                    </span>
+                                @endif
+                        </div>
                                     <div class="form-group">
                                         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
->>>>>>> talents
-
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>

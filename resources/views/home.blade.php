@@ -25,10 +25,12 @@
                     <div class="row">
                         <div class="col-md-3 user-profile">
                             <div class="profile-image-container">
-                                <img src="assets/images/profile-picture.png" alt="">
+                                <img src="{{ storage_path(Auth::user()->avatar) }}" alt="">
                             </div>
                             <h3 class="text-center">{{ Auth::user()->name }}</h3>
-                            <p class="text-center">UI/UX Designer</p>
+                            <p class="text-center"> @if($user->profile->about)
+                                                        {{ $user->profile->about }}
+                                                    @endif</p>
                             <hr>
                             <ul class="list-unstyled text-center">
                                 <li><p><i class="fa fa-map-marker m-r-xs"></i>Melbourne, Australia</p></li>
@@ -42,13 +44,18 @@
                             <div class="panel panel-white">
                                 <div class="panel-body">
                                     <div class="post">
+                                <h4> Add a Snippet</h4>
+                                <br>
+                                        <input type="text" name="talents" class="form-control" Placeholder=" Snippet Tags e.g Java, Singing" data-role="tagsinput" required>
+                                        <br>
                                         <textarea class="form-control" placeholder="Post" rows="4=6"></textarea>
                                         <div class="post-options">
                                             <a href="#"><i class="icon-camera"></i></a>
+                                        @if($user->profile->user_type == "talent")
                                             <a href="#"><i class="icon-camcorder"></i></a>
+                                        @endif
                                             <a href="#"><i class="icon-music-tone-alt"></i></a>
                                             <a href="#"><i class="icon-link"></i></a>
-                                            <a href="#"><i class="icon-microphone"></i></a>
                                             <button class="btn btn-default pull-right">Post</button>
                                         </div>
                                     </div>

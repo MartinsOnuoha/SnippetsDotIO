@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Session;
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $slug = Auth::user()->slug;
+        $user = User::where('slug', $slug)->first();
+        return view('home')->with('user', $user);
     }
 }
