@@ -74,7 +74,7 @@
 
 .barnd-cards{
   padding: 200px 0px 100px 0px;
-  background: #2166e0;
+  background: #05010c;
 }
 
 .card-height{
@@ -204,4 +204,30 @@
   color: #000;
   background: #FFF;
   border: 0;
+}
+.card-title {
+  margin-top: 70px;
+}
+.card-body {
+  color: #FFF;
+}
+#card1 {
+  background-image: linear-gradient( 51deg, rgb(127,95,206) 0%, rgb(179,123,236) 99%);
+  color: #FFF;
+}
+#card2 {
+  background-image: linear-gradient( 51deg, rgb(5, 170, 79) 0%, rgb(62, 251, 119) 99%);
+  color: #FFF;
+}
+#card3 {
+  background-image: linear-gradient( 51deg, rgb(65,174,220) 0%, rgb(6,240,243) 100%);
+  color: #FFF;
+}
+#card4 {
+  background-image: linear-gradient( 51deg, rgb(241,177,23) 0%, rgb(255,216,98) 100%);
+  color: #FFF;
+}
+.card:hover {
+  will-change: transform;
+  transform: perspective(300px) rotateX(-1.68deg) rotateY(3.65deg) scale3d(1, 1, 1);
 }

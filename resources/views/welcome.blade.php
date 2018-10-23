@@ -52,7 +52,7 @@
             </div>
         </nav>
 
-        <div class="brand-header">
+        <div id="particles-js1" class="brand-header">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
@@ -98,25 +98,20 @@
         </div>
 
 
-        <section class="barnd-cards">
-            <div class="container">
+        <section id="particles-js2" class="barnd-cards">
+            <div id="particles-js3" class="container">
                 <div class="row">
                     <div class="col-md-5">
                         <div class="snippet-card-pad">
                             <p class="snippet-text text-white">
-                                Snippet Main Features
+                                A Peek into Entertainment Goodness
                             </p>
                             <p class="text-white">
-                                BE FIRST
-                                When your team needs to kick off a project, hire a new employee, deploy some code, review a sales contract,
-                                finalize
-                                next year's budget.
+                                Sharinig your creative contents just got easier.
                             </p>
 
                             <p class="text-white">
-                                When your team needs to kick off a project, hire a new employee, deploy some code, review a sales contract,
-                                finalize
-                                next year's budget.
+                                Get discovered by top Entertainment Investors around the globe.
                             </p>
                         </div>
                     </div>
@@ -126,26 +121,42 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card-con">
-                                        <div class="card text-center card-height">     
-                                            <div class="car-title">
-                                                BE FIRST
+                                        <div class="card text-center card-height" id="card1">     
+                                            <div class="card-title">
+                                        
+                                                <h4>BE FIRST</h4>
                                             </div>
-                                            <div class="body">
-
+                                            <div class="card-body">
+                                                Get notified about the latest opportunities for you to promote your music, dancing, movie and modeling talent.
                                             </div>
                                         </div>
-                                        <div class="card text-center mt-3 card-height">
-
+                                        <div class="card text-center mt-3 card-height" id="card2">
+                                            <div class="card-title">
+                                                <h4>ANNOUNCE</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                post your search for talent and recruit from the snippets of many applicants.
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-con-two">
-                                        <div class="card text-center card-height">
-
+                                        <div class="card text-center card-height" id="card3">
+                                            <div class="card-title">
+                                                <h4>CONNECT</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                Upload snippets of you performing any of the listed talents. Your next investor might be watching.
+                                            </div>
                                         </div>
-                                        <div class="card text-center mt-3 card-height">
-
+                                        <div class="card text-center mt-3 card-height" id="card4">
+                                            <div class="card-title">
+                                                <h4>FILTER</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                Browse through video snippets of users and applicants before setting up an interview with them.
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -157,7 +168,7 @@
         </section>
 
 
-
+{{-- 
         <section class="artisan">
 
             <div class="featured text-center">
@@ -219,12 +230,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
 
 
-
-        <section class="third-sec">
+        {{-- <section class="third-sec">
             <div class="mentor text-center">
                 <h2 class="">Meet the Team</h2>
             </div>
@@ -235,8 +245,8 @@
                         <div class="card-height-1">
                             <div class="card card-list text-center">
                                 <div class="img-round"></div>
-                                <h4 class="mt-5 dev">Developer</h4>
-                                <p class="dev-p">Fullstack javascript</p>
+                                <h4 class="mt-5 dev">Iyiola Osuagwu</h4>
+                                <p class="dev-p">JavaScript / Frontend</p>
                             </div>
                         </div>
                     </div>
@@ -244,16 +254,7 @@
                         <div class="card-height-1">
                             <div class="card card-list text-center">
                                 <div class="img-round"></div>
-                                <h4 class="mt-5 dev">Developer</h4>
-                                <p class="dev-p">Ruby</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card-height-1">
-                            <div class="card card-list text-center">
-                                <div class="img-round"></div>
-                                <h4 class="mt-5 dev">Developer</h4>
+                                <h4 class="mt-5 dev">Martins Onuoha</h4>
                                 <p class="dev-p">Node.js / Backend</p>
                             </div>
                         </div>
@@ -262,18 +263,27 @@
                         <div class="card-height-1">
                             <div class="card card-list text-center">
                                 <div class="img-round"></div>
-                                <h4 class="mt-5 dev">Developer</h4>
-                                <p class="dev-p">this.MartinOnauha</p>
+                                <h4 class="mt-5 dev">Jeremiah Uchenna</h4>
+                                <p class="dev-p">PHP / Backend</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-height-1">
+                            <div class="card card-list text-center">
+                                <div class="img-round"></div>
+                                <h4 class="mt-5 dev">Dayo</h4>
+                                <p class="dev-p">Creative Content Developer</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
 
 
-        <section class="third-sec">
+        {{-- <section class="third-sec">
             <div class="mentor text-center">
                 <h2 class="">Meet Our mentors</h2>
             </div>
@@ -318,7 +328,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
 
         <!-- <footer class="black">
@@ -396,11 +406,18 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/owl.carousel.js') }}"></script>
+    {{-- Particles JS --}}
+    <script type="text/javascript" src="{{ asset('js/particles.min.js') }}"></script>
     {{-- Typed Js --}}
     <script src="{{ asset('js/typed.min.js') }}"></script>
 
     <script type="text/javascript">
-
+        particlesJS.load('particles-js1', 'assets/particles.json', function() {
+            console.log('callback - particles.js config loaded');
+        });
+        particlesJS.load('particles-js2', 'assets/particles.json', function() {
+            console.log('callback - particles.js config loaded');
+        });
         var typed2 = new Typed('#changeWord', {
 		    strings: ['connects', 'inspires', 'grows'],
 		    typeSpeed: 50,
