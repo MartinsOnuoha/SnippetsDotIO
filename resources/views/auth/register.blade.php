@@ -29,7 +29,12 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                                    </div>
+                            </div>
+                        </div>
+
+                        
+
+                                   
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -48,7 +53,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <select id="user_type" class="form-control{{ $errors->has('user_type') ? ' is-invalid' : '' }} round" name="user_type">
-                                                    <option selected>You are?</option>
+                                                    <option selected>You are ?</option>
                                                     <option value="investor">An Investor</option>
                                                     <option value="talent">A Talent</option>
                                                 </select>

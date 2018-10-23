@@ -37,11 +37,28 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'profile.update'
     ]);
 
+    Route::post('/snippet/add', [
+        'uses' => 'ProfilesController@addSnippet',
+        'as' => 'snippet.add'
+    ]);
+
     Route::get('/profile/{slug}', [
         'uses' => 'ProfilesController@index',
         'as' => 'profile'
     ]);
 
+    Route::get('/snippet/{id}/edit', [
+        'uses' => 'ProfilesController@snippetEdit',
+        'as' => 'snippet.edit'
+    ]);
+    Route::post('/snippet/{id}/update', [
+        'uses' => 'ProfilesController@snippetUpdate',
+        'as' => 'snippet.update'
+    ]);
+    Route::get('/snippet/{id}/delete', [
+        'uses' => 'ProfilesController@deleteSnippet',
+        'as' => 'snippet.delete'
+    ]);
     Route::get('/check_relationship_status/{id}', [
         'uses' => 'FriendshipsController@check',
         'as' => 'check'

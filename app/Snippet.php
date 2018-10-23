@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Friendship extends Model
+class Snippet extends Model
 {
     protected $fillable = [
-        'requester', 'user_requested', 'status',
+        'snippetdetails', 'snippetags', 'snippetfile', 'file_type','user_id', 'file_extension', 'user_name', 'user_slug',
     ];
 
     public function users(){

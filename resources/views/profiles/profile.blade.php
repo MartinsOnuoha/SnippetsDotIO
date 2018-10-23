@@ -10,11 +10,19 @@
                         <div class="profile-info-value text-center">
                             @if ($user)
                                 <h3>{{ $user->countFriends() }}</h3>
+                                <p>Followers</p>
+
+                            </div>
+                            <!-- call a countPosts() method from the Posts Trait -->
+                            <div class="profile-info-value text-center">
+                                <h3>{{ count(Auth::user()->getSnippets()) }}</h3>
+                                <p>Snippets</p>
+                            </div>
                             @else
+                            
                                 <h3>Unknown User</h3>
                             @endif
                             <p>Connections</p>
-                        </div>
                         <!-- call a countPosts() method from the Posts Trait -->
                         <div class="profile-info-value text-center">
                             <h3>1780</h3>
@@ -23,7 +31,6 @@
                             @else
                                 <p>Snippets</p> 
                             @endif
-                            
                         </div>
                     </div>
                 </div>
@@ -46,6 +53,90 @@
                                     @else
                                         Location not set
                                     @endif
+                                    </p>
+                                </li>
+                            </ul>
+                            <hr>
+                            @if($user->id === Auth::user()->id)
+                                <a href="{{ url('/profile/edit') }}" class="btn btn-primary btn-block"><i class="fa fa-edit m-r-xs"></i>Edit</a>
+                            @else
+                                <button class="btn btn-primary btn-block"><i class="fa fa-plus m-r-xs"></i>Follow</button>
+                            @endif
+                        </div>
+                        <div class="col-md-6 m-t-lg">
+                            @if ($user->id === Auth::user()->id)
+                            <div class="panel panel-white">
+                                <div class="panel-body">
+                                     @if($user->user_type =="talent")
+                                    <h4>Add Snippet</h4>
+                                            @else
+                                            <h4>Add Gig</h4>
+                                            @endif
+                                    <div class="post">
+                                <form action="{{ route('snippet.add') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+
+                                        <input class="form-control" placeholder="Snippet Tags separated by commas e.g #singing, #dancing" rows="4=6" name="snippetags" required>
+                                        <br/>
+                                        <textarea class="form-control" placeholder="Post" rows="4=6" name="snippetdetails" require></textarea>
+                                        <div class="post-options">
+                                            <label for="snippetfile" style="cursor: pointer;"><i class="icon-link"></i></label>
+                                             @if($user->user_type =="talent")
+                                                <input type="file" style="display: none;" id="snippetfile" name="snippetfile" class="form-control" accept="image/*,video/*" required>
+                                            @else
+                                            <input type="file" style="display: none;" id="snippetfile" name="snippetfile" class="form-control" accept="image/*" required>
+                                            @endif
+
+                                            <button type="submit" class="btn btn-default pull-right">Post</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            <div class="profile-timeline">
+                                <ul class="list-unstyled">
+                                @foreach($user->getSnippets() as $snippet)
+                                    <li class="timeline-item">
+                                        <div class="panel panel-white">
+                                            <div class="panel-body">
+                                                <div class="timeline-item-header">
+                                                    <img src="{{ Storage::url($user->avatar) }}" alt="">
+                                                    <p>
+                                                        @if($user->id === Auth::user()->id)
+                                                            You
+                                                        @else
+                                                            {{ $user->name }}
+                                                        @endif
+                                                        <span>Posted a Snippet</span>
+                                                    </p>
+                                                    <small>{{ $snippet->created_at }}</small>
+                                                </div>
+                                                <div class="timeline-item-post">
+                                                    <p>{{ $snippet->snippetags }}</p>
+                                                    <p>{{ $snippet->snippetdetails }}</p>
+                                                @if($snippet->file_type == "image")
+                                                <img src="{{ asset(''. $snippet->snippetfile . '') }}" alt="">
+                                                @elseif($snippet->file_type == "video")
+                                                <video class="snippetvideo" controls>
+                                                  <source src="{{ asset(''. $snippet->snippetfile . '') }}" type="video/{{ $snippet->file_extension }}">
+                                                </video>
+                                                @endif
+                                                    <div class="timeline-options">
+                                                        <a href="#"><i class="icon-like"></i> Likes (7)</a>
+                                                    </div>
+                                                     @if($user->id === Auth::user()->id)
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <a href="{{ route('snippet.delete', $snippet->id) }}">
+                                                                <i class="icon-trash text-red" style="margin-right: 40px;"></i>
+                                                            </a>
+                                                            <a href="{{ route('snippet.edit', $snippet->id) }}">
+                                                                <i class="icon-pencil ml-5"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    @endif
                                 </p>
                             </li>
                             <li>
@@ -169,6 +260,10 @@
 
                                             </div>
                                         </div>
+                                    </li>
+                                @endforeach
+                                </ul>
+                            </div>
                                     </div>
                                 </li>
                             </ul>
@@ -182,6 +277,22 @@
                             <div class="panel-heading">
                                 <div class="panel-title">Folowers</div>
                             </div>
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    @if($user->id === Auth::user()->id)
+                                    <div class="panel-title">About Me</div>
+                                    @else
+                                    <div class="panel-title">About {{ $user->name }}</div>
+                                    @endif
+                                </div>
+                                <div class="panel-body">
+                                    <p>
+                                        @if($user->profile->about)
+                                            {{ $user->profile->about }}
+                                        @else
+                                            <span style="color: #CCC">Tell us something about you...</span>
+                                        @endif
+                                    </p>
                             <div class="panel-body">
                                 <div class="team">
                                     @foreach ($user->getFriends() as $friend)

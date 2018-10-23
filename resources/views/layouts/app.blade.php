@@ -6,15 +6,11 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/png">
-
     <title>{{ config('app.name', 'Snippet') }}</title>
         <meta name="description" content=" Connect your Talent to the right Investor" />
-        <meta name="keywords" content="snipper,talents,investors" />
+        <meta name="keywords" content="snippet,talents,investors" />
         <meta name="author" content="Projectiles" />
-
-        <!-- Styles -->
         <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
         <link href="{{ asset('assets/plugins/pace-master/themes/blue/pace-theme-flash.css') }}" rel="stylesheet"/>
         <link href="{{ asset('assets/plugins/uniform/css/uniform.default.min.css') }}" rel="stylesheet"/>
@@ -28,6 +24,7 @@
         <!-- Theme Styles -->
         <link href="{{ asset('assets/css/modern.min.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('css/tagsinput.css') }}" rel="stylesheet" type="text/css"/>
         
         <script src="{{ asset('assets/plugins/3d-bold-navigation/js/modernizr.js') }}"></script>
         
@@ -55,6 +52,7 @@
         <script src="{{ asset('assets/plugins/classie/classie.js') }}"></script>
         <script src="{{ asset('assets/plugins/waves/waves.min.js') }}"></script>
         <script src="{{ asset('assets/js/modern.min.js') }}"></script>
+        <script src="{{ asset('js/tagsinput.js') }}"></script>
         
     </body>
 </html>

@@ -6,6 +6,8 @@
 
                 <div id="main-wrapper" class="container">
                     <div class="row">
+                        <div class="col-md-3">
+                                <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="">
                         <div class="col-md-3" style="margin-top: 20px">
                             <div class="profile-image-container">
                                 <img src="{{ asset(Auth::user()->avatar) }}" alt="">
@@ -38,28 +40,40 @@
                                 </li>
                             </ul>
                             <hr>
+                            <a class="btn btn-primary btn-block" href="{{ route('profile', Auth::user()->slug) }}"><i class="fa fa-eye m-r-xs"></i>View My Profile</a>
                             <a href="{{ route('profile', Auth::user()->slug) }}">
                                 <button class="btn btn-primary btn-block"><i class="fa fa-eye m-r-xs"></i>View My Profile</button>
                             </a>
                         </div>
-                        <div class="col-md-6 m-t-lg">
-                            {{-- <div class="panel panel-white">
+                         <div class="col-md-6 m-t-lg">
+                            <div class="panel panel-white">
                                 <div class="panel-body">
+                                     @if(Auth::user()->user_type =="talent")
+                                    <h4>Add Snippet</h4>
+                                            @else
+                                            <h4>Add Gig</h4>
+                                            @endif
                                     <div class="post">
-                                        <textarea class="form-control" placeholder="Post" rows="4=6"></textarea>
+                                <form action="{{ route('snippet.add') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+
+                                        <input class="form-control" placeholder="Snippet Tags separated by commas e.g #singing, #dancing" rows="4=6" name="snippetags" required>
+                                        <br/>
+                                        <textarea class="form-control" placeholder="Post" rows="4=6" name="snippetdetails" require></textarea>
                                         <div class="post-options">
-                                            <a href="#"><i class="icon-camera"></i></a>
-                                            <a href="#"><i class="icon-camcorder"></i></a>
-                                            <a href="#"><i class="icon-music-tone-alt"></i></a>
-                                            <a href="#"><i class="icon-link"></i></a>
-                                            <a href="#"><i class="icon-microphone"></i></a>
-                                            <button class="btn btn-default pull-right">Post</button>
+                                            <label for="snippetfile" style="cursor: pointer;"><i class="icon-link"></i></label>
+                                                <input type="file" style="display: none;" id="snippetfile" name="snippetfile" class="form-control" accept="image/*,video/*" required>
+                                            <input type="file" style="display: none;" id="snippetfile" name="snippetfile" class="form-control" accept="image/*" required>
+
+                                            <button type="submit" class="btn btn-default pull-right">Post</button>
                                         </div>
+                                    </form>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="profile-timeline">
                                 <ul class="list-unstyled">
+                                @foreach(Auth::user()->getAllSnippets() as $snippet)
                                     <li class="timeline-item">
                                             <div class="panel panel-white">
                                                 <div class="panel-body">
@@ -99,16 +113,42 @@
                                         <div class="panel panel-white">
                                             <div class="panel-body">
                                                 <div class="timeline-item-header">
+                                                    <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="">
+                                                    <p>
+                                                        @if($snippet->user_id === Auth::user()->id)
+                                                           <a href="{{ route('profile', Auth::user()->slug) }}">You</a>
+                                                        @else
+                                                            <a href="{{ route('profile', $snippet->user_slug) }}">{{ $snippet->user_name }}</a>
+                                                        @endif
+                                                        <span>Posted a Snippet</span>
+                                                    </p>
+                                                    <small>{{ $snippet->created_at }}</small>
                                                     <img src="{{ asset('defaults/avatars/snippet.png') }}" alt="">
                                                     <p><a href="#">John Ukenna</a> <span>posted a Snippet</span></p>
                                                     <small>2 hours ago</small>
                                                 </div>
                                                 <div class="timeline-item-post">
-                                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
-                                                    <img src="assets/images/post-image.jpg" alt="">
+                                                    <p>{{ $snippet->snippetags }}</p>
+                                                    <p>{{ $snippet->snippetdetails }}</p>
+                                                @if($snippet->file_type == "image")
+                                                <img src="{{ asset(''. $snippet->snippetfile . '') }}" alt="">
+                                                @elseif($snippet->file_type == "video")
+                                                <video class="snippetvideo" controls>
+                                                  <source src="{{ asset(''. $snippet->snippetfile . '') }}" type="video/{{ $snippet->file_extension }}">
+                                                </video>
+                                                @endif
                                                     <div class="timeline-options">
-                                                        <a href="#"><i class="icon-like"></i> Like (14)</a>
                                                     </div>
+                                                     @if($snippet->user_id === Auth::user()->id)
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <a href="{{ route('snippet.delete', $snippet->id) }}">
+                                                                <i class="icon-trash text-red" style="margin-right: 40px;"></i>
+                                                            </a>
+                                                            <a href="{{ route('snippet.edit', $snippet->id) }}">
+                                                                <i class="icon-pencil ml-5"></i>
+                                                            </a>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,11 +166,12 @@
                                                     <div class="timeline-options">
                                                         <a href="#"><i class="icon-like"></i> Like (3)</a>
                                                     </div>
-                                                    <button class="btn btn-primary btn-block"><i class="fa fa-check m-r-xs"></i>I'm Interested</button>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
+                                @endforeach
                                 </ul>
                             </div>
                         </div>

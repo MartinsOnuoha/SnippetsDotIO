@@ -24,12 +24,15 @@
         <link href="{{ asset('assets/plugins/line-icons/simple-line-icons.css') }}" rel="stylesheet" type="text/css"/> 
         <link href="{{ asset('assets/plugins/waves/waves.min.css') }}" rel="stylesheet" type="text/css"/>  
         <link href="{{ asset('assets/plugins/switchery/switchery.min.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('assets/plugins/3d-bold-navigation/css/style.css') }}" rel="stylesheet" type="text/css"/> 
         <link href="{{ asset('assets/plugins/3d-bold-navigation/css/style.css') }}" rel="stylesheet" type="text/css"/>  
         <link href="{{ asset('assets/plugins/slidepushmenus/css/component.css') }}" rel="stylesheet" type="text/css"/>
         
         <!-- Theme Styles -->
         <link href="{{ asset('assets/css/modern.min.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('css/tagsinput.css') }}" rel="stylesheet" type="text/css"/>
+        
         <script src="{{ asset('assets/plugins/3d-bold-navigation/js/modernizr.js') }}"></script>
         
         
@@ -273,9 +276,10 @@
         <script src="{{ asset('assets/plugins/classie/classie.js') }}"></script>
         <script src="{{ asset('assets/plugins/waves/waves.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/3d-bold-navigation/js/main.js') }}"></script>
-        {{-- <script src="{{ asset('assets/js/modern.min.js') }}"></script> --}}
+        <script src="{{ asset('assets/js/modern.min.js') }}"></script>
+        <script src="{{ asset('js/tagsinput.js') }}"></script>
+<script src="{{ asset('assets/js/modern.min.js') }}"></script> 
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzjeZ1lORVesmjaaFu0EbYeTw84t1_nek"></script>
-        {{-- <script src="{{ asset('assets/js/pages/profile.js') }}"></script> --}}
-        
+ <script src="{{ asset('assets/js/pages/profile.js') }}"></script>
     </body>
 </html>

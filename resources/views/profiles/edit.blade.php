@@ -1,6 +1,18 @@
 @extends('layouts.main')
 
 @section('content')
+<<<<<<< HEAD
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-5">
+            @if (session('success'))
+                <div class="alert alert-success text-center" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+        </div>
+    </div>
+=======
             <!-- Page Sidebar -->
             <div class="page-inner">
 
@@ -70,6 +82,7 @@
                                             </span>
                                             @endif
                                         </div>
+>>>>>>> 2562a9aeb9139a32ffeafff0cdc299d79f7dbdc1
 
                                         <div class="form-group">
                                             <label for="phone">Phone</label>
@@ -82,6 +95,26 @@
                                             @endif
                                         </div>
 
+<<<<<<< HEAD
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" name="location" class="form-control" value="{{ $user->profile->location }}" required>
+                        </div>
+                        
+                            @if($user->profile->user_type == "talent")
+                                <div class="form-group">
+                                     <label for="talents">Talents</label>
+                                    <input type="text" name="talents" class="form-control" value="{{ $user->profile->talents }}" data-role="tagsinput" required>
+                                </div>
+                            @endif
+                           
+                        <div class="form-group">
+                            <label for="avatar">Upload Profile Picture</label>
+                            <input type="file" name="avatar" class="form-control" accept="image/*">
+                        </div>
+=======
                                         <div class="form-group">
                                             <label for="avatar">Upload Profile Picture</label>
                                             <input name="avatar" type="file" class="form-control" id="avatar" accept="image/*">
@@ -92,6 +125,7 @@
                                             </span>
                                             @endif
                                         </div>
+>>>>>>> 2562a9aeb9139a32ffeafff0cdc299d79f7dbdc1
 
                                         <div class="form-group">
                                             <label for="location">Location</label>
