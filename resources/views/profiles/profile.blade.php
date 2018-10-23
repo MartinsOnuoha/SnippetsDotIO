@@ -8,7 +8,7 @@
                 <div class="container">
                     <div class="col-md-12 profile-info">
                         <div class="profile-info-value text-center">
-                            :@if ($user)
+                            @if ($user)
                                 <h3>{{ $user->countFriends() }}</h3>
                             @else
                                 <h3>Unknown User</h3>
