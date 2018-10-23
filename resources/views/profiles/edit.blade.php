@@ -31,7 +31,7 @@
                             <input type="text" name="location" class="form-control" value="{{ $user->profile->location }}" required>
                         </div>
                         
-                             @if($user->profile->user_type == "talent")
+                            @if($user->profile->user_type == "talent")
                                 <div class="form-group">
                                      <label for="talents">Talents</label>
                                     <input type="text" name="talents" class="form-control" value="{{ $user->profile->talents }}" data-role="tagsinput" required>

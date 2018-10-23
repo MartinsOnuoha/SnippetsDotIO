@@ -17,8 +17,13 @@ class CreateSnippetsTable extends Migration
             $table->increments('id');
             $table->longText('snippetdetails');
             $table->longText('snippetags');
+            $table->longText('snippetfile');
+            $table->longText('user_name');
+            $table->longText('user_slug');
+            $table->enum('file_type', ['video', 'image']);
+            $table->longText('file_extension');
             $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

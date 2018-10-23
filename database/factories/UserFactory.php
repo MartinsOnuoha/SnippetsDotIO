@@ -24,7 +24,8 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'slug' => str_slug($name),
         'gender' => false,
-        'avatar' => 'public/defaults/avatars/female.jpg',
+        'user_type' => 'talent',
+        'avatar' => 'public/defaults/avatars/snippet.png',
         'email_verified_at' => now(),
         'password' => $password ?: $password = bcrypt('secret'), // secret
         'remember_token' => str_random(10),

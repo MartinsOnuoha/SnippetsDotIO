@@ -3,6 +3,9 @@
 namespace App;
 
 use App\Traits\Friendable;
+use App\Traits\Investor;
+use App\Traits\Talent;
+use App\Traits\Snippeter;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -12,6 +15,9 @@ class User extends Authenticatable
 {
     use Notifiable;
     use Friendable;
+    use Investor;
+    use Talent;
+    use Snippeter;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'gender', 'avatar', 'slug'
+        'name', 'email', 'password', 'gender', 'avatar', 'slug', 'user_type'
     ];
 
     /**

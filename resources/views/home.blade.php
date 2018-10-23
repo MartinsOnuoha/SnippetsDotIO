@@ -3,203 +3,175 @@
 @section('content')
             <!-- Page Sidebar -->
             <div class="page-inner">
-                <div class="profile-cover">
-                    <div class="container">
-                        <div class="col-md-12 profile-info">
-                            <div class="profile-info-value">
-                                <h3>1020</h3>
-                                <p>Followers</p>
-                            </div>
-                            <div class="profile-info-value">
-                                <h3>1780</h3>
-                                <p>Friends</p>
-                            </div>
-                            <div class="profile-info-value">
-                                <h3>260</h3>
-                                <p>Photos</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div id="main-wrapper" class="container">
                     <div class="row">
-                        <div class="col-md-3 user-profile">
-                            <div class="profile-image-container">
-                                <img src="{{ storage_path(Auth::user()->avatar) }}" alt="">
-                            </div>
+                        <div class="col-md-3">
+                                <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="">
                             <h3 class="text-center">{{ Auth::user()->name }}</h3>
-                            <p class="text-center"> @if($user->profile->about)
-                                                        {{ $user->profile->about }}
-                                                    @endif</p>
+                            <p class="text-center user-type">{{ Auth::user()->user_type }}</p>
+                            <p class="text-center user-type">Connections - {{ count(Auth::user()->getFriends()) }}</p>
                             <hr>
                             <ul class="list-unstyled text-center">
-                                <li><p><i class="fa fa-map-marker m-r-xs"></i>Melbourne, Australia</p></li>
+                                <li>
+                                    <p>
+                                        <i class="fa fa-map-marker m-r-xs"></i>
+                                        @if(Auth::user()->profile->location)
+                                            {{ Auth::user()->profile->location }}
+                                        @else
+                                            Location not set
+                                        @endif
+                                    </p>
+                                </li>
                                 <li><p><i class="fa fa-envelope m-r-xs"></i><a href="#">{{ Auth::user()->email }}</a></p></li>
-                                <li><p><i class="fa fa-link m-r-xs"></i><a href="#">www.themeforest.net</a></p></li>
+                                <li>
+                                    <p>
+                                    <i class="fa fa-link m-r-xs"></i>
+                                    @if(Auth::user()->profile->website)
+                                        <a href="{{ Auth::user()->profile->website }}">{{ Auth::user()->profile->website }}</a>
+                                    @else
+                                        Website Not set
+                                    @endif
+                                    </p>
+                                </li>
                             </ul>
                             <hr>
-                            <button class="btn btn-primary btn-block"><i class="fa fa-plus m-r-xs"></i>Follow</button>
+                            <a class="btn btn-primary btn-block" href="{{ route('profile', Auth::user()->slug) }}"><i class="fa fa-eye m-r-xs"></i>View My Profile</a>
                         </div>
-                        <div class="col-md-6 m-t-lg">
+                         <div class="col-md-6 m-t-lg">
                             <div class="panel panel-white">
                                 <div class="panel-body">
+                                     @if(Auth::user()->user_type =="talent")
+                                    <h4>Add Snippet</h4>
+                                            @else
+                                            <h4>Add Gig</h4>
+                                            @endif
                                     <div class="post">
-                                <h4> Add a Snippet</h4>
-                                <br>
-                                        <input type="text" name="talents" class="form-control" Placeholder=" Snippet Tags e.g Java, Singing" data-role="tagsinput" required>
-                                        <br>
-                                        <textarea class="form-control" placeholder="Post" rows="4=6"></textarea>
+                                <form action="{{ route('snippet.add') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+
+                                        <input class="form-control" placeholder="Snippet Tags separated by commas e.g #singing, #dancing" rows="4=6" name="snippetags" required>
+                                        <br/>
+                                        <textarea class="form-control" placeholder="Post" rows="4=6" name="snippetdetails" require></textarea>
                                         <div class="post-options">
-                                            <a href="#"><i class="icon-camera"></i></a>
-                                        @if($user->profile->user_type == "talent")
-                                            <a href="#"><i class="icon-camcorder"></i></a>
-                                        @endif
-                                            <a href="#"><i class="icon-music-tone-alt"></i></a>
-                                            <a href="#"><i class="icon-link"></i></a>
-                                            <button class="btn btn-default pull-right">Post</button>
+                                            <label for="snippetfile" style="cursor: pointer;"><i class="icon-link"></i></label>
+                                                <input type="file" style="display: none;" id="snippetfile" name="snippetfile" class="form-control" accept="image/*,video/*" required>
+                                            <input type="file" style="display: none;" id="snippetfile" name="snippetfile" class="form-control" accept="image/*" required>
+
+                                            <button type="submit" class="btn btn-default pull-right">Post</button>
                                         </div>
+                                    </form>
                                     </div>
                                 </div>
                             </div>
                             <div class="profile-timeline">
                                 <ul class="list-unstyled">
+                                @foreach(Auth::user()->getAllSnippets() as $snippet)
                                     <li class="timeline-item">
                                         <div class="panel panel-white">
                                             <div class="panel-body">
                                                 <div class="timeline-item-header">
-                                                    <img src="assets/images/avatar3.png" alt="">
-                                                    <p>Christopher palmer <span>Posted a Status</span></p>
-                                                    <small>5 hours ago</small>
+                                                    <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="">
+                                                    <p>
+                                                        @if($snippet->user_id === Auth::user()->id)
+                                                           <a href="{{ route('profile', Auth::user()->slug) }}">You</a>
+                                                        @else
+                                                            <a href="{{ route('profile', $snippet->user_slug) }}">{{ $snippet->user_name }}</a>
+                                                        @endif
+                                                        <span>Posted a Snippet</span>
+                                                    </p>
+                                                    <small>{{ $snippet->created_at }}</small>
                                                 </div>
                                                 <div class="timeline-item-post">
-                                                    <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+                                                    <p>{{ $snippet->snippetags }}</p>
+                                                    <p>{{ $snippet->snippetdetails }}</p>
+                                                @if($snippet->file_type == "image")
+                                                <img src="{{ asset(''. $snippet->snippetfile . '') }}" alt="">
+                                                @elseif($snippet->file_type == "video")
+                                                <video class="snippetvideo" controls>
+                                                  <source src="{{ asset(''. $snippet->snippetfile . '') }}" type="video/{{ $snippet->file_extension }}">
+                                                </video>
+                                                @endif
                                                     <div class="timeline-options">
-                                                        <a href="#"><i class="icon-like"></i> Like (7)</a>
-                                                        <a href="#"><i class="icon-bubble"></i> Comment (2)</a>
-                                                        <a href="#"><i class="icon-share"></i> Share (3)</a>
                                                     </div>
-                                                    <div class="timeline-comment">
-                                                        <div class="timeline-comment-header">
-                                                            <img src="assets/images/avatar5.png" alt="">
-                                                            <p>Nick Doe <small>1 hour ago</small></p>
+                                                     @if($snippet->user_id === Auth::user()->id)
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <a href="{{ route('snippet.delete', $snippet->id) }}">
+                                                                <i class="icon-trash text-red" style="margin-right: 40px;"></i>
+                                                            </a>
+                                                            <a href="{{ route('snippet.edit', $snippet->id) }}">
+                                                                <i class="icon-pencil ml-5"></i>
+                                                            </a>
                                                         </div>
-                                                        <p class="timeline-comment-text">Nullam quis risus eget urna mollis ornare vel eu leo.</p>
                                                     </div>
-                                                    <div class="timeline-comment">
-                                                        <div class="timeline-comment-header">
-                                                            <img src="assets/images/avatar2.png" alt="">
-                                                            <p>Sandra Smith <small>3 hours ago</small></p>
-                                                        </div>
-                                                        <p class="timeline-comment-text">Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                                                    </div>
-                                                    <textarea class="form-control" placeholder="Replay"></textarea>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="timeline-item">
-                                        <div class="panel panel-white">
-                                            <div class="panel-body">
-                                                <div class="timeline-item-header">
-                                                    <img src="assets/images/avatar2.png" alt="">
-                                                    <p>Sandra Smith <span>Uploaded Photo</span></p>
-                                                    <small>2 hours ago</small>
-                                                </div>
-                                                <div class="timeline-item-post">
-                                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
-                                                    <img src="assets/images/post-image.jpg" alt="">
-                                                    <div class="timeline-options">
-                                                        <a href="#"><i class="icon-like"></i> Like (14)</a>
-                                                        <a href="#"><i class="icon-bubble"></i> Comment (1)</a>
-                                                        <a href="#"><i class="icon-share"></i> Share (5)</a>
-                                                    </div>
-                                                    <div class="timeline-comment">
-                                                        <div class="timeline-comment-header">
-                                                            <img src="assets/images/avatar5.png" alt="">
-                                                            <p>Nick Doe <small>1 hours ago</small></p>
-                                                        </div>
-                                                        <p class="timeline-comment-text">Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-                                                    </div>
-                                                    <textarea class="form-control" placeholder="Replay"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="timeline-item">
-                                        <div class="panel panel-white">
-                                            <div class="panel-body">
-                                                <div class="timeline-item-header">
-                                                    <img src="assets/images/avatar5.png" alt="">
-                                                    <p>Nick Doe <span>Was in New York</span></p>
-                                                    <small>6 hours ago</small>
-                                                </div>
-                                                <div class="timeline-item-post">
-                                                    <div id="map-canvas" style="height: 200px; width: 100%;"></div>
-                                                    <div class="timeline-options">
-                                                        <a href="#"><i class="icon-like"></i> Like (3)</a>
-                                                        <a href="#"><i class="icon-bubble"></i> Comment (0)</a>
-                                                        <a href="#"><i class="icon-share"></i> Share (2)</a>
-                                                    </div>
-                                                    <textarea class="form-control" placeholder="Write a comment..."></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                @endforeach
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-3 m-t-lg">
                             <div class="panel panel-white">
                                 <div class="panel-heading">
-                                    <div class="panel-title">Team</div>
+                                    @if (Auth::user()->profile->user_type === 'investor')
+                                        <div class="panel-title">Top Talents</div>
+                                    @else
+                                        <div class="panel-title">Top Investors</div>
+                                    @endif
                                 </div>
                                 <div class="panel-body">
                                     <div class="team">
-                                        <div class="team-member">
-                                           <div class="online on"></div>
-                                            <img src="assets/images/avatar1.png" alt="">
-                                        </div>
-                                        <div class="team-member">
-                                           <div class="online off"></div>
-                                            <img src="assets/images/avatar2.png" alt="">
-                                        </div>
-                                        <div class="team-member">
-                                           <div class="online on"></div>
-                                            <img src="assets/images/avatar3.png" alt="">
-                                        </div>
-                                        <div class="team-member">
-                                           <div class="online on"></div>
-                                            <img src="assets/images/avatar5.png" alt="">
-                                        </div>
+                                        @foreach (Auth::user()->getAllTalents() as $talent)
+                                            <div class="team-member">
+                                                <div class="online on"></div>
+                                                <a href="{{ route('profile', $talent->slug) }}">
+                                                    <img src="{{ Storage::url($talent->avatar) }}" alt="">
+                                                </a>
+                                            </div>        
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
+                            @if (Auth::user()->user_type === 'talent')
+                                <div class="panel panel-white">
+                                    <div class="panel-heading">
+                                        <div class="panel-title">Latest GiG</div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+                                        <button class="btn btn-primary btn-block"><i class="fa fa-check m-r-xs"></i>I'm Interested</button>
+                                    </div>
+                                </div>                             
+                            @else
+                                <div class="panel panel-white">
+                                    <div class="panel-heading">
+                                        <div class="panel-title">Latest Snippet</div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+                                    </div>
+                                </div>                  
+                            @endif
+
+
                             <div class="panel panel-white">
                                 <div class="panel-heading">
-                                    <div class="panel-title">Some Info</div>
+                                    <div class="panel-title">Latest Snippets</div>
                                 </div>
                                 <div class="panel-body">
-                                    <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-                                </div>
-                            </div>
-                            <div class="panel panel-white">
-                                <div class="panel-heading">
-                                    <div class="panel-title">Skills</div>
-                                </div>
-                                <div class="panel-body">
-                                    <p>HTML5</p>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                    <div class="panel panel-black">
+                                        <div class="panel-body">
+                                            <a href="#">Marcus Grey posted a snippet</a>
                                         </div>
                                     </div>
-                                    <p>PHP</p>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                        </div>
-                                    </div>
-                                    <p>Javascript</p>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <a href="#">Samuel James posted a snippet</a>
                                         </div>
                                     </div>
                                 </div>
@@ -209,7 +181,7 @@
                 </div>
                 <div class="page-footer">
                     <div class="container">
-                        <p class="no-s">2015 &copy; Modern by Steelcoders.</p>
+                        <p class="no-s">2018 &copy; Snippet.</p>
                     </div>
                 </div>
             </div><!-- Page Inner -->
@@ -221,15 +193,15 @@
             </header>
             <ul class="cd-nav list-unstyled">
                 <li class="cd-selected" data-menu="index">
-                    <a href="javsacript:void(0);">
+                    <a href="{{ route('home') }}">
                         <span>
                             <i class="glyphicon glyphicon-home"></i>
                         </span>
-                        <p>Dashboard</p>
+                        <p>Home</p>
                     </a>
                 </li>
                 <li data-menu="profile">
-                    <a href="javsacript:void(0);">
+                    <a href="{{ route('profile', Auth::user()->slug) }}">
                         <span>
                             <i class="glyphicon glyphicon-user"></i>
                         </span>
@@ -239,34 +211,30 @@
                 <li data-menu="inbox">
                     <a href="javsacript:void(0);">
                         <span>
-                            <i class="glyphicon glyphicon-envelope"></i>
+                            <i class="glyphicon glyphicon-bell"></i>
                         </span>
-                        <p>Mailbox</p>
+                        <p>Notifications</p>
                     </a>
                 </li>
                 <li data-menu="#">
                     <a href="javsacript:void(0);">
                         <span>
-                            <i class="glyphicon glyphicon-tasks"></i>
+                            <i class="glyphicon glyphicon-plus"></i>
                         </span>
-                        <p>Tasks</p>
+                        <p>Followers</p>
                     </a>
                 </li>
                 <li data-menu="#">
-                    <a href="javsacript:void(0);">
+                    <a href="{{ route('logout') }}"  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
                         <span>
-                            <i class="glyphicon glyphicon-cog"></i>
+                            <i class="fa fa-sign-out m-r-xs"></i>
                         </span>
-                        <p>Settings</p>
+                        <p>{{ __('Logout') }}</p>
                     </a>
-                </li>
-                <li data-menu="calendar">
-                    <a href="javsacript:void(0);">
-                        <span>
-                            <i class="glyphicon glyphicon-calendar"></i>
-                        </span>
-                        <p>Calendar</p>
-                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </nav>

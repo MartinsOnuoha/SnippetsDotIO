@@ -13,19 +13,19 @@
                                 <form class="m-t-md" method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="form-group">
-                                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
+                                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} round" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                        @if ($errors->has('email'))
+                                            <span class="invalid-feedback text-red" role="alert">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                     <div class="form-group">
-                                       <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
+                                       <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} round" name="password" placeholder="Password" required>
 
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback text-red" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
@@ -41,10 +41,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-success btn-block">{{ __('Login') }}</button>
+                                    <button type="submit" class="btn btn-success btn-block round">{{ __('Login') }}</button>
                                     <a href="{{ route('password.request') }}" class="display-block text-center m-t-md text-sm">{{ __('Forgot Your Password?') }}</a>
                                     <p class="text-center m-t-xs text-sm text-white">Do not have an account?</p>
-                                    <a href="{{ route('register') }}" class="btn btn-default btn-block m-t-md">Create an account</a>
+                                    <a href="{{ route('register') }}" class="btn btn-default btn-block m-t-md round">Create an account</a>
                                 </form>
                                 <p class="text-center m-t-xs text-sm text-white">2018 &copy;  {{ config('app.name', 'Snippet') }}.</p>
                             </div>

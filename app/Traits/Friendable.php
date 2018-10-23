@@ -11,18 +11,18 @@ trait Friendable
     public function addFriend($user_requested_id)
     {
         // User should not Add himself
-        if ($this->id == $user_requested_id) {
+        if ($this->id === $user_requested_id) {
             return 0;
         }
         if ($this->hasPendingRequestTo($user_requested_id) === 1) {
-            return 'Request already sent';
+            return response()->json('Request already sent');
         }
         if ($this->isFriendsWith($user_requested_id)) {
-            return 'Already friends';
+            return response()->json('Already Friends with this user');
         }
-        if ($this->hasPendingRequestFrom($user_requested_id) === 1) {
-            return $this->acceptFriend($user_requested_id);
-        }
+        // if ($this->hasPendingRequestFrom($user_requested_id) === 1) {
+        //     return $this->acceptFriend($user_requested_id);
+        // }
 
         $Friendship = Friendship::create([
             'requester' => $this->id,
@@ -179,4 +179,23 @@ trait Friendable
             return 0;
         }
     }
+
+    // Count number of friends
+    public function countFriends()
+    {
+        return count($this->getFriends());
+    }
+
+    // Cancle pending Request
+    public function canclePendingRequest($user_requested_id)
+    {
+        Friendship::where('status', 0)
+                        ->where('user_requested', $user_requested_id)
+                        ->where('requester', $this->id)
+                        ->delete();
+        
+        return response()->json('Friend request cancled', 200);
+    }
+
+    
 }

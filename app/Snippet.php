@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Snippet extends Model
 {
     protected $fillable = [
-        'requester', 'user_requested', 'status',
+        'snippetdetails', 'snippetags', 'snippetfile', 'file_type','user_id', 'file_extension', 'user_name', 'user_slug',
     ];
 
     public function users(){
-    	return $this->belongsToMany('App\User')
+    	return $this->belongsToMany('App\User');
     }
 }

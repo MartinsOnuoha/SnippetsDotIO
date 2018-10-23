@@ -28,6 +28,9 @@ class HomeController extends Controller
     {
         $slug = Auth::user()->slug;
         $user = User::where('slug', $slug)->first();
+
+        $user = Auth::user();
+
         return view('home')->with('user', $user);
     }
 }

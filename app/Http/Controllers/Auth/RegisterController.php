@@ -67,9 +67,9 @@ class RegisterController extends Controller
     {
         // Check user gender and set default avatar
         if ($data['gender']) {
-            $avatar = 'public/defaults/avatars/male.png';
+            $avatar = 'public/defaults/avatars/snippet.png';
         } else {
-            $avatar = 'public/defaults/avatars/female.jpg';
+            $avatar = 'public/defaults/avatars/snippet.png';
         }
 
         $user = User::create([
@@ -79,11 +79,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'slug' => str_slug($data['name']),
             'avatar' => $avatar,
+            'user_type' => $data['user_type']
         ]);
 
         Profile::create([
-            'user_id' => $user->id, 
-            'user_type' => $data['user_type']
+            'user_id' => $user->id,
         ]);
 
         return $user;

@@ -1,12 +1,15 @@
 <?php
 
 namespace App;
+use App\Traits\Snippeter;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
-    protected $fillable = ['location', 'about', 'user_id', 'user_type'];
+	use Snippeter;
+
+    protected $fillable = ['location', 'about', 'user_id', 'industry', 'website', 'talent'];
 
     public function user()
     {
