@@ -6,8 +6,9 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="theme-color" content="#212121">
 
-    <link rel="shortcut icon" href="{{ asset('snippet.png') }}">
+    <link rel="shortcut icon" href="{{ asset('snippet.png') }}" type="image/png">
 
     <title>{{ config('app.name', 'Snippet') }}</title>
         <meta name="description" content=" Connect your Talent to the right Investor" />

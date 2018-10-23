@@ -41,6 +41,13 @@
                         if (res.data == 1)
                             this.loading = false;
                             this.status = 'waiting';
+                            swal({
+                                position: 'top-end',
+                                type: 'success',
+                                title: 'Connection request sent',
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
                     });
             },
 
@@ -49,10 +56,16 @@
 
                 axios.get('/accept_friend/' + this.profile_user_id)
                     .then((res) => {
-                        console.log(res);
                         if (res.data == 1)
                             this.loading = false;
                             this.status = 'friends';
+                            swal({
+                                position: 'top-end',
+                                type: 'success',
+                                title: 'You are now connected',
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
                     });
             },
 
@@ -64,6 +77,13 @@
                         if (res.data == 1)
                             this.loading = false;
                             this.status = 0;
+                            swal({
+                                position: 'top-end',
+                                type: 'success',
+                                title: 'You have disconnected this user',
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
                     });
             }
         }

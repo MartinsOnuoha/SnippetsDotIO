@@ -7,11 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/png">
+
     <title>{{ config('app.name', 'Snippet') }}</title>
         <meta name="description" content=" Connect your Talent to the right Investor" />
         <meta name="keywords" content="snipper,talents,investors" />
         <meta name="author" content="Projectiles" />
-        
+
         <!-- Styles -->
         <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
         <link href="{{ asset('assets/plugins/pace-master/themes/blue/pace-theme-flash.css') }}" rel="stylesheet"/>

@@ -21,6 +21,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "gulp": "^3.9.1"
+        "gulp": "^3.9.1",
+        "sweetalert2": "^7.28.8"
     }
 }
