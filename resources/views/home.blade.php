@@ -194,23 +194,13 @@
                                     </div>
                                 </div>                  
                             @endif
-
-
-                            <div class="panel panel-white">
-                                <div class="panel-heading">
-                                    <div class="panel-title">Latest Snippets</div>
-                                </div>
+                            <div class="panel twitter-box">
                                 <div class="panel-body">
-                                    <div class="panel panel-black">
-                                        <div class="panel-body">
-                                            <a href="#">Marcus Grey posted a snippet</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <a href="#">Samuel James posted a snippet</a>
-                                        </div>
+                                    <div class="live-tile flip ha" data-mode="flip" data-speed="750" data-delay="3000">
+                                        <span class="tile-title pull-right">New Tweets</span>
+                                        <i class="fa fa-twitter"></i>
+                                        <div class="flip-front ha" style="transform: rotateX(180deg); transition: all 750ms ease 0s;"><h2 class="no-m">It’s kind of fun to do the impossible...</h2><span class="tile-date">10 April, 2015</span></div>
+                                        <div class="flip-back ha" style="transform: rotateX(360deg); transition: all 750ms ease 0s;"><h2 class="no-m">Sometimes by losing a battle you find a new way to win the war...</h2><span class="tile-date">6 April, 2015</span></div>
                                     </div>
                                 </div>
                             </div>
