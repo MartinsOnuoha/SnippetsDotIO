@@ -6,7 +6,7 @@
 
                 <div id="main-wrapper" class="container">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3" style="margin-top: 20px">
                             <div class="profile-image-container">
                                 <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="">
                             </div>
@@ -133,13 +133,10 @@
                             </div>
                         </div>
                         <div class="col-md-3 m-t-lg">
+                            @if (Auth::user()->user_type === 'investor')
                             <div class="panel panel-white">
                                 <div class="panel-heading">
-                                    @if (Auth::user()->profile->user_type === 'investor')
-                                        <div class="panel-title">Top Talents</div>
-                                    @else
-                                        <div class="panel-title">Top Investors</div>
-                                    @endif
+                                    <div class="panel-title">Top Talents</div>
                                 </div>
                                 <div class="panel-body">
                                     <div class="team">
@@ -154,6 +151,27 @@
                                     </div>
                                 </div>
                             </div>
+                            @else
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Top Investors</div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="team">
+                                        @foreach ($user->getAllInvestors() as $investor)
+                                            <div class="team-member">
+                                                <div class="online on"></div>
+                                                <a href="{{ route('profile', $investor->slug) }}">
+                                                    <img src="{{ Storage::url($investor->avatar) }}" alt="">
+                                                </a>
+                                            </div>        
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
+
                             @if (Auth::user()->user_type === 'talent')
                                 <div class="panel panel-white">
                                     <div class="panel-heading">

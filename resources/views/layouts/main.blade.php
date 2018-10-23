@@ -7,6 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="shortcut icon" href="{{ asset('snippet.png') }}">
+
     <title>{{ config('app.name', 'Snippet') }}</title>
         <meta name="description" content=" Connect your Talent to the right Investor" />
         <meta name="keywords" content="snipper,talents,investors" />
@@ -27,7 +29,6 @@
         <!-- Theme Styles -->
         <link href="{{ asset('assets/css/modern.min.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css"/>
-        
         <script src="{{ asset('assets/plugins/3d-bold-navigation/js/modernizr.js') }}"></script>
         
         
@@ -54,7 +55,7 @@
         </form><!-- Search Form -->
 
         
-        <main class="page-content content-wrap">
+        <main id="app" class="page-content content-wrap">
             <div class="navbar">
                 <div class="navbar-inner container">
                     <div class="sidebar-pusher">
@@ -256,6 +257,7 @@
 
         <!-- Javascripts -->
         <script src="{{ asset('assets/plugins/jquery/jquery-2.1.4.min.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/pace-master/pace.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-blockui/jquery.blockui.js') }}"></script>
@@ -266,9 +268,9 @@
         <script src="{{ asset('assets/plugins/classie/classie.js') }}"></script>
         <script src="{{ asset('assets/plugins/waves/waves.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/3d-bold-navigation/js/main.js') }}"></script>
-        <script src="{{ asset('assets/js/modern.min.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/modern.min.js') }}"></script> --}}
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzjeZ1lORVesmjaaFu0EbYeTw84t1_nek"></script>
-        <script src="{{ asset('assets/js/pages/profile.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/pages/profile.js') }}"></script> --}}
         
     </body>
 </html>

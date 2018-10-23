@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\Friendable;
 use App\Traits\Investor;
+use App\Traits\Talent;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -14,6 +15,7 @@ class User extends Authenticatable
     use Notifiable;
     use Friendable;
     use Investor;
+    use Talent;
 
     /**
      * The attributes that are mass assignable.
