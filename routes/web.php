@@ -5,18 +5,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/is', function() {
-    return \App\User::find(1)->isFriendsWith(2);
-});
+// Route::get('/is', function() {
+//     return \App\User::find(1)->isFriendsWith(2);
+// });
 
+// Route::get('/delete', function() {
+//     return \App\User::find(1)->deleteFriend(2);
+// });
 
-
-Route::get('/has', function() {
-    return \App\User::find(1)->hasPendingRequestFrom(5);
-});
-Route::get('/accept', function() {
-    return \App\User::find(1)->acceptFriend(4);
-});
+// Route::get('/has', function() {
+//     return \App\User::find(1)->hasPendingRequestFrom(5);
+// });
+// Route::get('/accept', function() {
+//     return \App\User::find(1)->acceptFriend(4);
+// });
 
 Auth::routes();
 
@@ -49,4 +51,15 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'FriendshipsController@addFriend',
         'as' => 'add_friend'
     ]);
+
+    Route::get('/accept_friend/{id}', [
+        'uses' => 'FriendshipsController@acceptFriend',
+        'as' => 'accept_friend'
+    ]);
+
+    Route::delete('/delete_friend/{id}', [
+        'uses' => 'FriendshipsController@deleteFriend',
+        'as' => 'delete_friend'
+    ]);
+
 });

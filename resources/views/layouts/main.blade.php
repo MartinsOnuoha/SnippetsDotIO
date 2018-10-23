@@ -102,11 +102,11 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
+                                    <a href="" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
                                         <span class="user-name">
                                             {{ Auth::user()->name }}<i class="fa fa-angle-down"></i>
                                         </span>
-                                        <img class="img-circle avatar" src="{{ Storage::url(Auth::user()->avatar) }}" width="40" height="40" alt="">
+                                        <img class="img-circle avatar" src="{{ asset(Auth::user()->avatar) }}" width="40" height="40" alt="">
                                     </a>
                                     <ul class="dropdown-menu dropdown-list" role="menu">
                                         <li role="presentation">

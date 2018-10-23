@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-md-3" style="margin-top: 20px">
                             <div class="profile-image-container">
-                                <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="">
+                                <img src="{{ asset(Auth::user()->avatar) }}" alt="">
                             </div>
                             <h3 class="text-center">{{ Auth::user()->name }}</h3>
                             <p class="text-center user-type">{{ Auth::user()->user_type }}</p>
@@ -62,7 +62,7 @@
                                             <div class="panel panel-white">
                                                 <div class="panel-body">
                                                     <div class="timeline-item-header">
-                                                        <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="">
+                                                        <img src="{{ asset(Auth::user()->avatar) }}" alt="">
                                                         <p>
                                                             @if($user->id === Auth::user()->id)
                                                                 <a href="{{ route('profile', Auth::user()->slug) }}">You</a>
@@ -97,7 +97,7 @@
                                         <div class="panel panel-white">
                                             <div class="panel-body">
                                                 <div class="timeline-item-header">
-                                                    <img src="{{ Storage::url('defaults/avatars/snippet.png') }}" alt="">
+                                                    <img src="{{ asset('defaults/avatars/snippet.png') }}" alt="">
                                                     <p><a href="#">John Ukenna</a> <span>posted a Snippet</span></p>
                                                     <small>2 hours ago</small>
                                                 </div>
@@ -115,7 +115,7 @@
                                         <div class="panel panel-white">
                                             <div class="panel-body">
                                                 <div class="timeline-item-header">
-                                                    <img src="{{ Storage::url('defaults/avatars/snippet.png') }}" alt="">
+                                                    <img src="{{ asset('defaults/avatars/snippet.png') }}" alt="">
                                                     <p><a href="#"> Mr Mashmellow</a> <span>posted a GiG</span></p>
                                                     <small>6 hours ago</small>
                                                 </div>
@@ -144,7 +144,7 @@
                                             <div class="team-member">
                                                 <div class="online on"></div>
                                                 <a href="{{ route('profile', $talent->slug) }}">
-                                                    <img src="{{ Storage::url($talent->avatar) }}" alt="">
+                                                    <img src="{{ asset($talent->avatar) }}" alt="">
                                                 </a>
                                             </div>        
                                         @endforeach
@@ -162,7 +162,7 @@
                                             <div class="team-member">
                                                 <div class="online on"></div>
                                                 <a href="{{ route('profile', $investor->slug) }}">
-                                                    <img src="{{ Storage::url($investor->avatar) }}" alt="">
+                                                    <img src="{{ asset($investor->avatar) }}" alt="">
                                                 </a>
                                             </div>        
                                         @endforeach

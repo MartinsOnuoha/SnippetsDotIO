@@ -43,7 +43,7 @@
         <!-- Javascripts -->
         <script src="{{ asset('assets/plugins/jquery/jquery-2.1.4.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
+        {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
         <script src="{{ asset('assets/plugins/pace-master/pace.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-blockui/jquery.blockui.js') }}"></script>
         <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>

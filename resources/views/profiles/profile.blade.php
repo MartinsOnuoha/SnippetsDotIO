@@ -27,7 +27,7 @@
                 <div class="row">
                         <div class="col-md-3 user-profile">
                             <div class="profile-image-container">
-                                <img height="150" width="150" src="{{ Storage::url($user->avatar) }}" alt="">
+                                <img height="150" width="150" src="{{ asset($user->avatar) }}" alt="">
                             </div>
                             <h3 class="text-center">{{ $user->name }}</h3>
                             <p class="text-center">{{ $user->profile->talent }}</p>
@@ -92,7 +92,7 @@
                                         <div class="panel panel-white">
                                             <div class="panel-body">
                                                 <div class="timeline-item-header">
-                                                    <img src="{{ Storage::url($user->avatar) }}" alt="">
+                                                    <img src="{{ asset($user->avatar) }}" alt="">
                                                     <p>
                                                         @if($user->id === Auth::user()->id)
                                                             You
@@ -129,7 +129,7 @@
                                         <div class="panel panel-white">
                                             <div class="panel-body">
                                                 <div class="timeline-item-header">
-                                                    <img src="{{ Storage::url($user->avatar) }}" alt="">
+                                                    <img src="{{ asset($user->avatar) }}" alt="">
                                                     <p>
                                                         @if($user->id === Auth::user()->id)
                                                             You
@@ -188,7 +188,9 @@
                             </div>
                             <div class="panel panel-white">
                                 <div class="panel-heading">
-                                    <div class="panel-title">About Me</div>
+                                    <div class="panel-title">
+                                        About @if(Auth::user()->id == $user->id)Me @else {{ $user->name }} @endif
+                                    </div>
                                 </div>
                                 <div class="panel-body">
                                     <p>
@@ -198,7 +200,7 @@
                                             <span style="color: #CCC">Tell us something about you...</span>
                                         @endif
                                     </p>
-
+                                    <button class="btn btn-primary btn-block"><i class="fa fa-edit m-r-xs"></i>Edit</button>
                                 </div>
                             </div>
                             <div class="panel panel-white">

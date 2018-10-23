@@ -47373,7 +47373,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         axios.get('/check_relationship_status/' + this.profile_user_id).then(function (res) {
-            console.log(res);
             _this.status = res.data.status;
             _this.loading = false;
         });
@@ -47382,8 +47381,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         addFriend: function addFriend() {
+            var _this2 = this;
+
+            this.loading = true;
+
             axios.get('/add_friend/' + this.profile_user_id).then(function (res) {
+                if (res.data == 1) _this2.loading = false;
+                _this2.status = 'waiting';
+            });
+        },
+        acceptFriend: function acceptFriend() {
+            var _this3 = this;
+
+            this.loading = true;
+
+            axios.get('/accept_friend/' + this.profile_user_id).then(function (res) {
                 console.log(res);
+                if (res.data == 1) _this3.loading = false;
+                _this3.status = 'friends';
+            });
+        },
+        disconnectFriend: function disconnectFriend() {
+            var _this4 = this;
+
+            this.loading = true;
+
+            axios.delete('/delete_friend/' + this.profile_user_id).then(function (res) {
+                if (res.data == 1) _this4.loading = false;
+                _this4.status = 0;
             });
         }
     }
@@ -47407,29 +47432,50 @@ var render = function() {
     !_vm.loading
       ? _c("p", { staticClass: "text-center" }, [
           _vm.status == 0
-            ? _c("button", { staticClass: "btn btn-primary btn-block" }, [
-                _c("i", { staticClass: "fa fa-plus m-r-xs" }),
-                _vm._v("Follow")
-              ])
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-block",
+                  on: { click: _vm.addFriend }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-plus m-r-xs" }),
+                  _vm._v("Connect")
+                ]
+              )
             : _vm._e(),
           _vm._v(" "),
           _vm.status == "friends"
-            ? _c("button", { staticClass: "btn btn-primary btn-block" }, [
-                _c("i", { staticClass: "fa fa-plus m-r-xs" }),
-                _vm._v("Unfollow")
-              ])
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-block",
+                  on: { click: _vm.disconnectFriend }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-expand m-r-xs" }),
+                  _vm._v("Disconnect")
+                ]
+              )
             : _vm._e(),
           _vm._v(" "),
           _vm.status == "pending"
-            ? _c("button", { staticClass: "btn btn-primary btn-block" }, [
-                _c("i", { staticClass: "fa fa-plus m-r-xs" }),
-                _vm._v("Accept Pending Request")
-              ])
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-block",
+                  on: { click: _vm.acceptFriend }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-compress m-r-xs" }),
+                  _vm._v("Accept Pending Request")
+                ]
+              )
             : _vm._e(),
           _vm._v(" "),
           _vm.status == "waiting"
             ? _c("span", { staticClass: "text-success" }, [
-                _vm._v("Waiting for response")
+                _vm._v("Connection request sent")
               ])
             : _vm._e()
         ])

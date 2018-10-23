@@ -4,10 +4,10 @@
             Loading...
         </p>
         <p class="text-center" v-if="!loading">
-            <button class="btn btn-primary btn-block" v-if="status == 0"><i class="fa fa-plus m-r-xs"></i>Follow</button>
-            <button class="btn btn-primary btn-block" v-if="status == 'friends'"><i class="fa fa-plus m-r-xs"></i>Unfollow</button>
-            <button class="btn btn-primary btn-block" v-if="status == 'pending'"><i class="fa fa-plus m-r-xs"></i>Accept Pending Request</button>
-            <span class="text-success" v-if="status == 'waiting'">Waiting for response</span>
+            <button class="btn btn-primary btn-block" v-if="status == 0" @click="addFriend"><i class="fa fa-plus m-r-xs"></i>Connect</button>
+            <button class="btn btn-primary btn-block" v-if="status == 'friends'" @click="disconnectFriend"><i class="fa fa-expand m-r-xs"></i>Disconnect</button>
+            <button class="btn btn-primary btn-block" v-if="status == 'pending'" @click="acceptFriend"><i class="fa fa-compress m-r-xs"></i>Accept Pending Request</button>
+            <span class="text-success" v-if="status == 'waiting'">Connection request sent</span>
         </p>
     </div>
 
@@ -27,7 +27,6 @@
         mounted() {
             axios.get('/check_relationship_status/' + this.profile_user_id)
                 .then((res) => {
-                    console.log(res);
                     this.status = res.data.status;
                     this.loading = false;
                 });
@@ -35,9 +34,36 @@
 
         methods: {
             addFriend() {
+                this.loading = true
+
                 axios.get('/add_friend/' + this.profile_user_id)
                     .then((res) => {
-                        console.log(res)
+                        if (res.data == 1)
+                            this.loading = false;
+                            this.status = 'waiting';
+                    });
+            },
+
+            acceptFriend() {
+                this.loading = true;
+
+                axios.get('/accept_friend/' + this.profile_user_id)
+                    .then((res) => {
+                        console.log(res);
+                        if (res.data == 1)
+                            this.loading = false;
+                            this.status = 'friends';
+                    });
+            },
+
+            disconnectFriend() {
+                this.loading = true;
+
+                axios.delete('/delete_friend/' + this.profile_user_id)
+                    .then((res) => {
+                        if (res.data == 1)
+                            this.loading = false;
+                            this.status = 0;
                     });
             }
         }
