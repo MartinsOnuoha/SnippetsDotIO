@@ -12,8 +12,8 @@
                             </div>
                             <!-- call a countPosts() method from the Posts Trait -->
                             <div class="profile-info-value text-center">
-                                <h3>1780</h3>
-                                <p>Posts</p>
+                                <h3>{{ count(Auth::user()->getSnippets()) }}</h3>
+                                <p>Snippets</p>
                             </div>
                         </div>
                     </div>
