@@ -5305,3 +5305,7 @@ body:not(.page-horizontal-bar).compact-menu .menu>li.open {
 .horizontal-bar .menu>li>ul {
     border-top: 0
 }
+
+a {
+    text-decoration: none !important;
+}

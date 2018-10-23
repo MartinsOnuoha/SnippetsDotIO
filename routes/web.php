@@ -62,4 +62,8 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'delete_friend'
     ]);
 
+    Route::get('/connections', [
+        'uses' => 'FriendshipsController@getAllConnections',
+        'as' => 'get_connections'
+    ]);
 });

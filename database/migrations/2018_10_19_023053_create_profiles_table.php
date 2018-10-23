@@ -20,6 +20,7 @@ class CreateProfilesTable extends Migration
             $table->string('talent')->nullable();
             $table->string('website')->nullable();
             $table->string('location')->nullable();
+            $table->string('phone')->nullable();
             $table->text('about')->nullable();
             $table->timestamps();
         });

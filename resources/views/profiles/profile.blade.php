@@ -62,7 +62,9 @@
                             </ul>
                             <hr>
                             @if($user->id === Auth::user()->id)
-                                <button class="btn btn-primary btn-block"><i class="fa fa-edit m-r-xs"></i>Edit</button>
+                            <a href="{{ route('profile.edit') }}">
+                                <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit m-r-xs"></i>Edit</button>
+                            </a>
                             @else
                                 {{-- <button class="btn btn-primary btn-block"><i class="fa fa-plus m-r-xs"></i>Follow</button> --}}
                                 <Friend :profile_user_id="{{ $user->id }}"></Friend>
@@ -200,9 +202,14 @@
                                             <span style="color: #CCC">Tell us something about you...</span>
                                         @endif
                                     </p>
-                                    <button class="btn btn-primary btn-block"><i class="fa fa-edit m-r-xs"></i>Edit</button>
+                                    @if(Auth::user()->id === $user->id)
+                                    <a href="{{ route('profile.edit') }}">
+                                        <button class="btn btn-primary btn-block"><i class="fa fa-edit m-r-xs"></i>Edit</button>
+                                    </a>
+                                    @endif
                                 </div>
                             </div>
+                            @if(Auth::user()->id === $user->id)
                             <div class="panel panel-white">
                                 <div class="panel-heading">
                                     <div class="panel-title">Pending Requests</div>
@@ -219,9 +226,22 @@
                                         </div>
                                         <div class="divider" style="margin-top: 5px;"></div>
                                     @endforeach
+                                    @foreach ($user->getPendingRequests() as $pending)
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p>{{ $pending->name }}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <i class="fa fa-trash text-red"></i>
+                                                <i class="fa fa-check" style="margin-left: 30px;"></i>
+                                            </div>
+                                        </div>
+                                        <div class="divider" style="margin-top: 5px;"></div>
+                                    @endforeach
                                         
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -267,7 +287,7 @@
                         <span>
                             <i class="glyphicon glyphicon-plus"></i>
                         </span>
-                        <p>Followers</p>
+                        <p>Connections</p>
                     </a>
                 </li>
                 <li data-menu="#">

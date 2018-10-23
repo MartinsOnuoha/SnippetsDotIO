@@ -29,8 +29,8 @@
                                 <li>
                                     <p>
                                     <i class="fa fa-link m-r-xs"></i>
-                                    @if($user->profile->website)
-                                        <a href="{{ $user->profile->website }}">{{ $user->profile->website }}</a>
+                                    @if(Auth::user()->profile->website)
+                                        <a href="{{ Auth::user()->profile->website }}">{{ Auth::user()->profile->website }}</a>
                                     @else
                                         Website Not set
                                     @endif
@@ -38,7 +38,9 @@
                                 </li>
                             </ul>
                             <hr>
-                            <button class="btn btn-primary btn-block"><i class="fa fa-eye m-r-xs"></i>View My Profile</button>
+                            <a href="{{ route('profile', Auth::user()->slug) }}">
+                                <button class="btn btn-primary btn-block"><i class="fa fa-eye m-r-xs"></i>View My Profile</button>
+                            </a>
                         </div>
                         <div class="col-md-6 m-t-lg">
                             {{-- <div class="panel panel-white">
@@ -140,7 +142,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="team">
-                                        @foreach ($user->getAllTalents() as $talent)
+                                        @foreach (Auth::user()->getAllTalents() as $talent)
                                             <div class="team-member">
                                                 <div class="online on"></div>
                                                 <a href="{{ route('profile', $talent->slug) }}">
@@ -158,7 +160,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="team">
-                                        @foreach ($user->getAllInvestors() as $investor)
+                                        @foreach (Auth::user()->getAllInvestors() as $investor)
                                             <div class="team-member">
                                                 <div class="online on"></div>
                                                 <a href="{{ route('profile', $investor->slug) }}">
@@ -253,11 +255,11 @@
                     </a>
                 </li>
                 <li data-menu="#">
-                    <a href="javsacript:void(0);">
+                    <a href="{{ route('get_connections') }}">
                         <span>
                             <i class="glyphicon glyphicon-plus"></i>
                         </span>
-                        <p>Followers</p>
+                        <p>Connections</p>
                     </a>
                 </li>
                 <li data-menu="#">

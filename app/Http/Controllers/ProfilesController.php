@@ -24,14 +24,19 @@ class ProfilesController extends Controller
 
     public function update(Request $r)
     {
-        $this->validate($r, [
-            'location' => ['required'],
-            'about' => ['required'],
-        ]);
+        // $this->validate($r, [
+        //     'location' => ['required'],
+        //     'about' => ['required'],
+        //     'phone' => ['required']
+        // ]);
         
         Auth::user()->profile()->update([
             'location' => $r->location,
             'about' => $r->about,
+            'phone' => $r->phone,
+            'industry' => $r->industry,
+            'website' => $r->website,
+            'talent' => $r->talent
         ]);
 
         if($r->hasFile('avatar')) {

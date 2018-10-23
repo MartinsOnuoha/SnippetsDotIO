@@ -45,4 +45,12 @@ class FriendshipsController extends Controller
     {
         return Auth::user()->deleteFriend($id);
     }
+
+    // Get all Connections
+    public function getAllConnections()
+    {
+        $friends = Auth::user()->getFriends();
+        
+        return view('user.connections')->with('friends', $friends);
+    }
 }

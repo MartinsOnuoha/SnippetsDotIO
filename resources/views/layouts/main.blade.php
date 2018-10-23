@@ -73,10 +73,9 @@
                     <div class="topmenu-outer">
                         <div class="top-menu">
                             <ul class="nav navbar-nav navbar-left">
-                                <li>
+                                {{-- <li>
                                     <a href="#cd-nav" class="waves-effect waves-button waves-classic cd-nav-trigger"><i class="fa fa-bars"></i></a>
-                                </li>
-                            
+                                </li>        --}}
                             </ul>
 
 
@@ -108,6 +107,7 @@
                                             {{ Auth::user()->name }}<i class="fa fa-angle-down"></i>
                                         </span>
                                         <img class="img-circle avatar" src="{{ asset(Auth::user()->avatar) }}" width="40" height="40" alt="">
+                                        {{-- <img src="{{Auth::user()->getFirstMediaUrl('avatars') }}"> --}}
                                     </a>
                                     <ul class="dropdown-menu dropdown-list" role="menu">
                                         <li role="presentation">
@@ -116,7 +116,9 @@
                                         <li role="presentation">
                                             <a href="{{ route('profile', Auth::user()->slug) }}"><i class="fa fa-user"></i>Profile</a>
                                         </li>
-
+                                        <li role="presentation">
+                                            <a href="{{ route('get_connections') }}"><i class="fa fa-compress"></i>Connections</a>
+                                        </li>
                                         <li role="presentation" class="divider"></li>
 
                                         <li role="presentation">
@@ -253,9 +255,11 @@
                     </ul>
                 </div><!-- Page Sidebar Inner -->
             </div>
+
+            
             @yield('content')
 
-
+            
         <!-- Javascripts -->
         <script src="{{ asset('assets/plugins/jquery/jquery-2.1.4.min.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
