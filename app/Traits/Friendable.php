@@ -30,9 +30,9 @@ trait Friendable
         ]);
 
         if($Friendship) {
-            return response()->json($Friendship, 200);
+            return 1;
         }
-        return response()->json('Failed', 501);
+        return 0;
     }
 
 
@@ -160,12 +160,13 @@ trait Friendable
     {
         $pending_req = Friendship::where('status', 0)
                                 ->where('requester', $user_id)
-                                ->get();
+                                ->first();
+
         if ($pending_req) {
-            # return response()->json('true', 200);
+            // return response()->json('true', 200);
             return 1;
         } else {
-            # return response()->json('false', 404);
+            // return response()->json('false', 404);
             return 0;
         }
     }
@@ -190,12 +191,38 @@ trait Friendable
     public function canclePendingRequest($user_requested_id)
     {
         Friendship::where('status', 0)
-                        ->where('user_requested', $user_requested_id)
-                        ->where('requester', $this->id)
-                        ->delete();
+                    ->where('user_requested', $user_requested_id)
+                    ->where('requester', $this->id)
+                    ->delete();
         
-        return response()->json('Friend request cancled', 200);
+        return 1;
     }
 
-    
+    // Unfriend
+    public function deleteFriend($user_id)
+    {
+        $f1 = Friendship::where('status', 1)
+                        ->where('user_requested', $user_id)
+                        ->where('requester', $this->id)
+                        ->first();
+        
+        $f2 = Friendship::where('status', 1)
+                        ->where('user_requested', $this->id)
+                        ->where('requester', $user_id)
+                        ->first();
+        
+        if (!$f1 and $f2) {
+            $f2->delete();
+            return 1;
+        } 
+        elseif ($f1 and !$f2) {
+            $f1->delete();
+            return 1;
+        }
+        elseif (!$f1 and !$f2) {
+            return 0;
+        }
+
+        return 0;
+    }
 }

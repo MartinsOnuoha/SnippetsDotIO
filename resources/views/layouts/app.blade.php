@@ -6,11 +6,11 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/png">
     <title>{{ config('app.name', 'Snippet') }}</title>
         <meta name="description" content=" Connect your Talent to the right Investor" />
         <meta name="keywords" content="snippet,talents,investors" />
         <meta name="author" content="Projectiles" />
-        <!-- Styles -->
         <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
         <link href="{{ asset('assets/plugins/pace-master/themes/blue/pace-theme-flash.css') }}" rel="stylesheet"/>
         <link href="{{ asset('assets/plugins/uniform/css/uniform.default.min.css') }}" rel="stylesheet"/>
@@ -42,6 +42,7 @@
         <!-- Javascripts -->
         <script src="{{ asset('assets/plugins/jquery/jquery-2.1.4.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+        {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
         <script src="{{ asset('assets/plugins/pace-master/pace.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-blockui/jquery.blockui.js') }}"></script>
         <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>

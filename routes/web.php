@@ -5,52 +5,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/is', function() {
+//     return \App\User::find(1)->isFriendsWith(2);
+// });
 
+// Route::get('/delete', function() {
+//     return \App\User::find(1)->deleteFriend(2);
+// });
 
-
-Route::get('/add_friend', function() {
-    return \App\User::find(1)->addFriend(5);
-});
-
-Route::get('/accept_friend', function() {
-    return \App\User::find(1)->acceptFriend(5);
-});
-
-Route::get('/friends', function() {
-    return \App\User::find(1)->getFriends();
-});
-
-Route::get('/ids', function() {
-    return \App\User::find(1)->getFriendsId();
-});
-
-Route::get('/pending', function() {
-    return \App\User::find(1)->getPendingRequests();
-});
-
-Route::get('/isFriend', function() {
-    return \App\User::find(1)->isFriendsWith(10);
-});
-
-Route::get('/has', function() {
-    return \App\User::find(1)->hasPendingRequestFrom(2);
-});
-
-Route::get('/sent', function() {
-    return \App\User::find(1)->getPendingRequestSent();
-});
-
-Route::get('/count', function() {
-    return \App\User::find(1)->countFriends();
-});
-
-Route::get('/cancle', function() {
-    return \App\User::find(1)->canclePendingRequest(3);
-});
-
-Route::get('/talents', function() {
-    return \App\User::find(1)->getAllTalents();
-});
+// Route::get('/has', function() {
+//     return \App\User::find(1)->hasPendingRequestFrom(5);
+// });
+// Route::get('/accept', function() {
+//     return \App\User::find(1)->acceptFriend(4);
+// });
 
 Auth::routes();
 
@@ -90,5 +58,29 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/snippet/{id}/delete', [
         'uses' => 'ProfilesController@deleteSnippet',
         'as' => 'snippet.delete'
+    ]);
+    Route::get('/check_relationship_status/{id}', [
+        'uses' => 'FriendshipsController@check',
+        'as' => 'check'
+    ]);
+
+    Route::get('/add_friend/{id}', [
+        'uses' => 'FriendshipsController@addFriend',
+        'as' => 'add_friend'
+    ]);
+
+    Route::get('/accept_friend/{id}', [
+        'uses' => 'FriendshipsController@acceptFriend',
+        'as' => 'accept_friend'
+    ]);
+
+    Route::delete('/delete_friend/{id}', [
+        'uses' => 'FriendshipsController@deleteFriend',
+        'as' => 'delete_friend'
+    ]);
+
+    Route::get('/connections', [
+        'uses' => 'FriendshipsController@getAllConnections',
+        'as' => 'get_connections'
     ]);
 });

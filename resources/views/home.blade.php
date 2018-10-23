@@ -8,6 +8,10 @@
                     <div class="row">
                         <div class="col-md-3">
                                 <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="">
+                        <div class="col-md-3" style="margin-top: 20px">
+                            <div class="profile-image-container">
+                                <img src="{{ asset(Auth::user()->avatar) }}" alt="">
+                            </div>
                             <h3 class="text-center">{{ Auth::user()->name }}</h3>
                             <p class="text-center user-type">{{ Auth::user()->user_type }}</p>
                             <p class="text-center user-type">Connections - {{ count(Auth::user()->getFriends()) }}</p>
@@ -37,6 +41,9 @@
                             </ul>
                             <hr>
                             <a class="btn btn-primary btn-block" href="{{ route('profile', Auth::user()->slug) }}"><i class="fa fa-eye m-r-xs"></i>View My Profile</a>
+                            <a href="{{ route('profile', Auth::user()->slug) }}">
+                                <button class="btn btn-primary btn-block"><i class="fa fa-eye m-r-xs"></i>View My Profile</button>
+                            </a>
                         </div>
                          <div class="col-md-6 m-t-lg">
                             <div class="panel panel-white">
@@ -68,6 +75,41 @@
                                 <ul class="list-unstyled">
                                 @foreach(Auth::user()->getAllSnippets() as $snippet)
                                     <li class="timeline-item">
+                                            <div class="panel panel-white">
+                                                <div class="panel-body">
+                                                    <div class="timeline-item-header">
+                                                        <img src="{{ asset(Auth::user()->avatar) }}" alt="">
+                                                        <p>
+                                                            @if($user->id === Auth::user()->id)
+                                                                <a href="{{ route('profile', Auth::user()->slug) }}">You</a>
+                                                            @else
+                                                                {{ $user->name }}
+                                                            @endif
+                                                            <span>Posted a Snippet</span>
+                                                        </p>
+                                                        <small>5 hours ago</small>
+                                                    </div>
+                                                    <div class="timeline-item-post">
+                                                        <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+                                                        <div class="timeline-options">
+                                                            <a href="#"><i class="icon-like"></i> Likes (7)</a>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <a href="">
+                                                                    <i class="icon-trash text-red" style="margin-right: 40px;"></i>
+                                                                </a>
+                                                                <a href="#">
+                                                                    <i class="icon-pencil ml-5"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                  
+                                    <li class="timeline-item">
                                         <div class="panel panel-white">
                                             <div class="panel-body">
                                                 <div class="timeline-item-header">
@@ -81,6 +123,9 @@
                                                         <span>Posted a Snippet</span>
                                                     </p>
                                                     <small>{{ $snippet->created_at }}</small>
+                                                    <img src="{{ asset('defaults/avatars/snippet.png') }}" alt="">
+                                                    <p><a href="#">John Ukenna</a> <span>posted a Snippet</span></p>
+                                                    <small>2 hours ago</small>
                                                 </div>
                                                 <div class="timeline-item-post">
                                                     <p>{{ $snippet->snippetags }}</p>
@@ -104,6 +149,22 @@
                                                                 <i class="icon-pencil ml-5"></i>
                                                             </a>
                                                         </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="timeline-item">
+                                        <div class="panel panel-white">
+                                            <div class="panel-body">
+                                                <div class="timeline-item-header">
+                                                    <img src="{{ asset('defaults/avatars/snippet.png') }}" alt="">
+                                                    <p><a href="#"> Mr Mashmellow</a> <span>posted a GiG</span></p>
+                                                    <small>6 hours ago</small>
+                                                </div>
+                                                <div class="timeline-item-post">
+                                                    <div id="map-canvas" style="height: 200px; width: 100%;"></div>
+                                                    <div class="timeline-options">
+                                                        <a href="#"><i class="icon-like"></i> Like (3)</a>
                                                     </div>
                                                     @endif
                                                 </div>
@@ -115,13 +176,10 @@
                             </div>
                         </div>
                         <div class="col-md-3 m-t-lg">
+                            @if (Auth::user()->user_type === 'investor')
                             <div class="panel panel-white">
                                 <div class="panel-heading">
-                                    @if (Auth::user()->profile->user_type === 'investor')
-                                        <div class="panel-title">Top Talents</div>
-                                    @else
-                                        <div class="panel-title">Top Investors</div>
-                                    @endif
+                                    <div class="panel-title">Top Talents</div>
                                 </div>
                                 <div class="panel-body">
                                     <div class="team">
@@ -129,13 +187,34 @@
                                             <div class="team-member">
                                                 <div class="online on"></div>
                                                 <a href="{{ route('profile', $talent->slug) }}">
-                                                    <img src="{{ Storage::url($talent->avatar) }}" alt="">
+                                                    <img src="{{ asset($talent->avatar) }}" alt="">
                                                 </a>
                                             </div>        
                                         @endforeach
                                     </div>
                                 </div>
                             </div>
+                            @else
+                            <div class="panel panel-white">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Top Investors</div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="team">
+                                        @foreach (Auth::user()->getAllInvestors() as $investor)
+                                            <div class="team-member">
+                                                <div class="online on"></div>
+                                                <a href="{{ route('profile', $investor->slug) }}">
+                                                    <img src="{{ asset($investor->avatar) }}" alt="">
+                                                </a>
+                                            </div>        
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
+
                             @if (Auth::user()->user_type === 'talent')
                                 <div class="panel panel-white">
                                     <div class="panel-heading">
@@ -156,8 +235,6 @@
                                     </div>
                                 </div>                  
                             @endif
-
-
                             <div class="panel panel-white">
                                 <div class="panel-heading">
                                     <div class="panel-title">Latest Snippets</div>
@@ -217,11 +294,11 @@
                     </a>
                 </li>
                 <li data-menu="#">
-                    <a href="javsacript:void(0);">
+                    <a href="{{ route('get_connections') }}">
                         <span>
                             <i class="glyphicon glyphicon-plus"></i>
                         </span>
-                        <p>Followers</p>
+                        <p>Connections</p>
                     </a>
                 </li>
                 <li data-menu="#">

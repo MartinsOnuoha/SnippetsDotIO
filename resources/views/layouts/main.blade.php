@@ -6,6 +6,9 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="theme-color" content="#212121">
+
+    <link rel="shortcut icon" href="{{ asset('snippet.png') }}" type="image/png">
 
     <title>{{ config('app.name', 'Snippet') }}</title>
         <meta name="description" content=" Connect your Talent to the right Investor" />
@@ -56,7 +59,7 @@
         </form><!-- Search Form -->
 
         
-        <main class="page-content content-wrap">
+        <main id="app" class="page-content content-wrap">
             <div class="navbar">
                 <div class="navbar-inner container">
                     <div class="sidebar-pusher">
@@ -73,10 +76,9 @@
                     <div class="topmenu-outer">
                         <div class="top-menu">
                             <ul class="nav navbar-nav navbar-left">
-                                <li>
+                                {{-- <li>
                                     <a href="#cd-nav" class="waves-effect waves-button waves-classic cd-nav-trigger"><i class="fa fa-bars"></i></a>
-                                </li>
-                            
+                                </li>        --}}
                             </ul>
 
 
@@ -103,11 +105,12 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
+                                    <a href="" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
                                         <span class="user-name">
                                             {{ Auth::user()->name }}<i class="fa fa-angle-down"></i>
                                         </span>
-                                        <img class="img-circle avatar" src="{{ Storage::url(Auth::user()->avatar) }}" width="40" height="40" alt="">
+                                        <img class="img-circle avatar" src="{{ asset(Auth::user()->avatar) }}" width="40" height="40" alt="">
+                                        {{-- <img src="{{Auth::user()->getFirstMediaUrl('avatars') }}"> --}}
                                     </a>
                                     <ul class="dropdown-menu dropdown-list" role="menu">
                                         <li role="presentation">
@@ -116,7 +119,9 @@
                                         <li role="presentation">
                                             <a href="{{ route('profile', Auth::user()->slug) }}"><i class="fa fa-user"></i>Profile</a>
                                         </li>
-
+                                        <li role="presentation">
+                                            <a href="{{ route('get_connections') }}"><i class="fa fa-compress"></i>Connections</a>
+                                        </li>
                                         <li role="presentation" class="divider"></li>
 
                                         <li role="presentation">
@@ -253,11 +258,14 @@
                     </ul>
                 </div><!-- Page Sidebar Inner -->
             </div>
+
+            
             @yield('content')
 
-
+            
         <!-- Javascripts -->
         <script src="{{ asset('assets/plugins/jquery/jquery-2.1.4.min.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/pace-master/pace.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-blockui/jquery.blockui.js') }}"></script>
@@ -270,8 +278,8 @@
         <script src="{{ asset('assets/plugins/3d-bold-navigation/js/main.js') }}"></script>
         <script src="{{ asset('assets/js/modern.min.js') }}"></script>
         <script src="{{ asset('js/tagsinput.js') }}"></script>
+<script src="{{ asset('assets/js/modern.min.js') }}"></script> 
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzjeZ1lORVesmjaaFu0EbYeTw84t1_nek"></script>
-        <script src="{{ asset('assets/js/pages/profile.js') }}"></script>
-        
+ <script src="{{ asset('assets/js/pages/profile.js') }}"></script>
     </body>
 </html>

@@ -9,7 +9,7 @@ class Profile extends Model
 {
 	use Snippeter;
 
-    protected $fillable = ['location', 'about', 'user_id', 'industry', 'website', 'talent'];
+    protected $fillable = ['location', 'about', 'user_id', 'industry', 'website', 'talent', 'phone'];
 
     public function user()
     {

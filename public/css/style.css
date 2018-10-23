@@ -206,7 +206,7 @@
   border: 0;
 }
 .card-title {
-  margin-top: 70px;
+  margin-top: 40px;
 }
 .card-body {
   color: #FFF;
@@ -230,4 +230,7 @@
 .card:hover {
   will-change: transform;
   transform: perspective(300px) rotateX(-1.68deg) rotateY(3.65deg) scale3d(1, 1, 1);
+}
+.card-icon {
+  font-size: 50px;
 }
