@@ -164,9 +164,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>              
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center" style="margin-top: 10em;">
+                    <div class="col-md-8">
+                        <a href="{{ route('register') }}" class="btn btn-material btn-block my-0" type="submit" style="background: #4285F4;">Get Started for Free</a>
                     </div>
                 </div>
             </div>

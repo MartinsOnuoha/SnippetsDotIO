@@ -21,6 +21,9 @@
                 loading: true,
             }
         },
+
+        props: ['profile_user_id'],
+
         mounted() {
             axios.get('/check_relationship_status/' + this.profile_user_id)
                 .then((res) => {
@@ -29,6 +32,14 @@
                     this.loading = false;
                 });
         },
-        props: ['profile_user_id'],
+
+        methods: {
+            addFriend() {
+                axios.get('/add_friend/' + this.profile_user_id)
+                    .then((res) => {
+                        console.log(res)
+                    });
+            }
+        }
     }
 </script>

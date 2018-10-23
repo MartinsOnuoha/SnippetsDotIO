@@ -47365,6 +47365,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             loading: true
         };
     },
+
+
+    props: ['profile_user_id'],
+
     mounted: function mounted() {
         var _this = this;
 
@@ -47375,7 +47379,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
     },
 
-    props: ['profile_user_id']
+
+    methods: {
+        addFriend: function addFriend() {
+            axios.get('/add_friend/' + this.profile_user_id).then(function (res) {
+                console.log(res);
+            });
+        }
+    }
 });
 
 /***/ }),

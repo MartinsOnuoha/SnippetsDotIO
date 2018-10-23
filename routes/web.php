@@ -9,9 +9,7 @@ Route::get('/is', function() {
     return \App\User::find(1)->isFriendsWith(2);
 });
 
-Route::get('/add', function() {
-    return \App\User::find(5)->addFriend(1);
-});
+
 
 Route::get('/has', function() {
     return \App\User::find(1)->hasPendingRequestFrom(5);
@@ -47,4 +45,8 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'check'
     ]);
 
+    Route::get('/add_friend/{id}', [
+        'uses' => 'FriendshipsController@addFriend',
+        'as' => 'add_friend'
+    ]);
 });
