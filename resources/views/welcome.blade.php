@@ -13,6 +13,8 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
+    <!-- Line Icons -->
+    <link href="{{ asset('assets/plugins/line-icons/simple-line-icons.css') }}" rel="stylesheet" type="text/css"/> 
     <!-- Your custom styles (optional) -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.theme.default.css') }}">
@@ -123,7 +125,7 @@
                                     <div class="card-con">
                                         <div class="card text-center card-height" id="card1">     
                                             <div class="card-title">
-                                        
+                                                <i class="icon-bell card-icon"></i>
                                                 <h4>BE FIRST</h4>
                                             </div>
                                             <div class="card-body">
@@ -132,6 +134,7 @@
                                         </div>
                                         <div class="card text-center mt-3 card-height" id="card2">
                                             <div class="card-title">
+                                                <i class="icon-speech card-icon"></i>
                                                 <h4>ANNOUNCE</h4>
                                             </div>
                                             <div class="card-body">
@@ -144,6 +147,7 @@
                                     <div class="card-con-two">
                                         <div class="card text-center card-height" id="card3">
                                             <div class="card-title">
+                                                <i class="icon-users card-icon"></i>
                                                 <h4>CONNECT</h4>
                                             </div>
                                             <div class="card-body">
@@ -152,6 +156,7 @@
                                         </div>
                                         <div class="card text-center mt-3 card-height" id="card4">
                                             <div class="card-title">
+                                                <i class="icon-magnifier card-icon mb-5"></i>
                                                 <h4>FILTER</h4>
                                             </div>
                                             <div class="card-body">
