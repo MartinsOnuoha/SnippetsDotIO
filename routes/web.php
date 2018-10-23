@@ -5,51 +5,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-
-Route::get('/add_friend', function() {
-    return \App\User::find(1)->addFriend(5);
+Route::get('/is', function() {
+    return \App\User::find(1)->isFriendsWith(2);
 });
 
-Route::get('/accept_friend', function() {
-    return \App\User::find(1)->acceptFriend(5);
-});
-
-Route::get('/friends', function() {
-    return \App\User::find(1)->getFriends();
-});
-
-Route::get('/ids', function() {
-    return \App\User::find(1)->getFriendsId();
-});
-
-Route::get('/pending', function() {
-    return \App\User::find(1)->getPendingRequests();
-});
-
-Route::get('/isFriend', function() {
-    return \App\User::find(1)->isFriendsWith(10);
+Route::get('/add', function() {
+    return \App\User::find(5)->addFriend(1);
 });
 
 Route::get('/has', function() {
-    return \App\User::find(1)->hasPendingRequestFrom(2);
+    return \App\User::find(1)->hasPendingRequestFrom(5);
 });
-
-Route::get('/sent', function() {
-    return \App\User::find(1)->getPendingRequestSent();
-});
-
-Route::get('/count', function() {
-    return \App\User::find(1)->countFriends();
-});
-
-Route::get('/cancle', function() {
-    return \App\User::find(1)->canclePendingRequest(3);
-});
-
-Route::get('/talents', function() {
-    return \App\User::find(1)->getAllTalents();
+Route::get('/accept', function() {
+    return \App\User::find(1)->acceptFriend(4);
 });
 
 Auth::routes();
@@ -72,6 +40,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/profile/{slug}', [
         'uses' => 'ProfilesController@index',
         'as' => 'profile'
+    ]);
+
+    Route::get('/check_relationship_status/{id}', [
+        'uses' => 'FriendshipsController@check',
+        'as' => 'check'
     ]);
 
 });

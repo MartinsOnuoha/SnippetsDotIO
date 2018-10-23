@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+ 
 @section('content')
             <!-- Page Sidebar -->
             <div class="page-inner">
@@ -8,12 +8,17 @@
                         <div class="col-md-12 profile-info">
                             <div class="profile-info-value text-center">
                                 <h3>{{ $user->countFriends() }}</h3>
-                                <p>Followers</p>
+                                <p>Connections</p>
                             </div>
                             <!-- call a countPosts() method from the Posts Trait -->
                             <div class="profile-info-value text-center">
                                 <h3>1780</h3>
-                                <p>Posts</p>
+                                @if ($user->user_type === 'investor')
+                                    <p>Gigs</p>
+                                @else
+                                    <p>Snippets</p> 
+                                @endif
+                                
                             </div>
                         </div>
                     </div>
@@ -59,7 +64,8 @@
                             @if($user->id === Auth::user()->id)
                                 <button class="btn btn-primary btn-block"><i class="fa fa-edit m-r-xs"></i>Edit</button>
                             @else
-                                <button class="btn btn-primary btn-block"><i class="fa fa-plus m-r-xs"></i>Follow</button>
+                                {{-- <button class="btn btn-primary btn-block"><i class="fa fa-plus m-r-xs"></i>Follow</button> --}}
+                                <Friend :profile_user_id="{{ $user->id }}"></Friend>
                             @endif
                         </div>
                         <div class="col-md-6 m-t-lg">
@@ -102,6 +108,7 @@
                                                     <div class="timeline-options">
                                                         <a href="#"><i class="icon-like"></i> Likes (7)</a>
                                                     </div>
+                                                    @if($user->id === Auth::user()->id)
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <a href="">
@@ -112,6 +119,7 @@
                                                             </a>
                                                         </div>
                                                     </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

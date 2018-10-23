@@ -47184,11 +47184,12 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
 var normalizeComponent = __webpack_require__(40)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(41)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(42)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47206,6 +47207,22 @@ var Component = normalizeComponent(
   __vue_module_identifier__
 )
 Component.options.__file = "resources/js/components/Friend.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-11cb39c9", Component.options)
+  } else {
+    hotAPI.reload("data-v-11cb39c9", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
 
 module.exports = Component.exports
 
@@ -47320,8 +47337,105 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 41 */,
-/* 42 */,
+/* 41 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            status: '',
+            loading: true
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/check_relationship_status/' + this.profile_user_id).then(function (res) {
+            console.log(res);
+            _this.status = res.data.status;
+            _this.loading = false;
+        });
+    },
+
+    props: ['profile_user_id']
+});
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.loading
+      ? _c("p", { staticClass: "text-center" }, [
+          _vm._v("\n        Loading...\n    ")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.loading
+      ? _c("p", { staticClass: "text-center" }, [
+          _vm.status == 0
+            ? _c("button", { staticClass: "btn btn-primary btn-block" }, [
+                _c("i", { staticClass: "fa fa-plus m-r-xs" }),
+                _vm._v("Follow")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.status == "friends"
+            ? _c("button", { staticClass: "btn btn-primary btn-block" }, [
+                _c("i", { staticClass: "fa fa-plus m-r-xs" }),
+                _vm._v("Unfollow")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.status == "pending"
+            ? _c("button", { staticClass: "btn btn-primary btn-block" }, [
+                _c("i", { staticClass: "fa fa-plus m-r-xs" }),
+                _vm._v("Accept Pending Request")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.status == "waiting"
+            ? _c("span", { staticClass: "text-success" }, [
+                _vm._v("Waiting for response")
+              ])
+            : _vm._e()
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-11cb39c9", module.exports)
+  }
+}
+
+/***/ }),
 /* 43 */
 /***/ (function(module, exports) {
 
