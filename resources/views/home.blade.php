@@ -99,9 +99,7 @@
                                                             </video>
                                                         @endif
                                                     <div class="timeline-options">
-                                                        <a href="#">
-                                                            <i class="icon-like"></i> Likes ({{ $snippet->likes }})
-                                                        </a>
+                                                        <Like :snippet_id={{ $snippet->id }} :likes={{ $snippet->likes }}></Like>
                                                     </div>
                                                     @if($snippet->user_id === Auth::user()->id)
                                                     <div class="row">

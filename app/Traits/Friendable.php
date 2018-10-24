@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Friendship;
+use App\Notification;
 
 trait Friendable
 {
@@ -224,5 +225,12 @@ trait Friendable
         }
 
         return 0;
+    }
+
+    public function getNotifications()
+    {
+        $notifications = Notification::where('user_id', $this->id);
+
+        return $notifications;
     }
 }

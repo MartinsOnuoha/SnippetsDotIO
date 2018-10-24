@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Notification;
 use Illuminate\Http\Request;
 
 class FriendshipsController extends Controller
@@ -33,7 +34,18 @@ class FriendshipsController extends Controller
         // Sending Email, Notifications, Broadcast
         $resp = Auth::user()->addFriend($id);
 
-        User::find($id)->notify(new \App\Notifications\NewFriendRequest(Auth::user()));
+        Notification::create([
+            'receiver' => $id,
+            'user_id' => Auth::user()->id,
+            'message' => 'You have received a new connection request'
+        ]);
+
+        Notification::create([
+            'user_id' => $id,
+            'receiver' => Auth::user()->id,
+            'message' => 'Your request has been sent successfully'
+        ]);
+        // User::find($id)->notify(new \App\Notifications\NewFriendRequest(Auth::user()));
 
         return $resp;
     }
@@ -42,7 +54,11 @@ class FriendshipsController extends Controller
     public function acceptFriend($id)
     {
         // Send notifications and all
-        return Auth::user()->acceptFriend($id);
+        $resp = Auth::user()->acceptFriend($id);
+
+        // User::find($id)->notify(new \App\Notifications\FriendRequestAccepted(Auth::user()));
+
+        return $resp;
     }
 
     // Delete Friend
