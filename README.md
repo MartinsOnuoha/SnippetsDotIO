@@ -3,8 +3,8 @@
 ## Team Projectiles
 ### Team members
 - Martins Onuoha (martinsvictor.nd@gmail.com)
-- Iyiola Osuagwu
-- Uchenna Jeremiah
+- Iyiola Osuagwu (iyiolaosuagwu1@gmail.com)
+- Uchenna Jeremiah 
 
 Section
 Problem
