@@ -56,24 +56,31 @@ class ProfilesController extends Controller
     public function addSnippet(Request $req)
     {   
         
-            $image = $req->file('snippetfile');
-            $video_types = array("mp4", "mov", "ogg");
-            $image_types = array("jpg", "gif", "png", "bmp");
-            $snippetfilename = time() . '.' . $image->getClientOriginalExtension();
-            if(in_array($image->getClientOriginalExtension(), $image_types)) {
-                $filetype = "image";
-            }elseif (in_array($image->getClientOriginalExtension(), $video_types)) {
-                $filetype = "video";
-            }
-            $destination = 'snippetuploads/';
-            $image->move($destination, $snippetfilename);
+        $image = $req->file('snippetfile');
+        $video_types = array("mp4", "mov", "ogg");
+        $image_types = array("jpg", "gif", "png", "bmp");
+        $snippetfilename = time() . '.' . $image->getClientOriginalExtension();
+        if(in_array($image->getClientOriginalExtension(), $image_types)) {
+            $filetype = "image";
+        }elseif (in_array($image->getClientOriginalExtension(), $video_types)) {
+            $filetype = "video";
+        }
+        $destination = 'snippetuploads/';
+        $image->move($destination, $snippetfilename);
 
 
-            $filedatabase = $destination . '' . $snippetfilename;
+        $filedatabase = $destination . '' . $snippetfilename;
 
+        if (Auth::user()->isInvestor()) {
+            $snippet_type = 'Gig';
+        } else {
+            $snippet_type = 'Snippet';
+        }
+        
         $snippeter = Snippet::create([
             'snippetdetails' => $req->snippetdetails,
             'snippetags' => $req->snippetags,
+            'snippet_type' => $snippet_type,
             'snippetfile' => $filedatabase,
             'user_name' => Auth::user()->name,
             'user_slug' => Auth::user()->slug,

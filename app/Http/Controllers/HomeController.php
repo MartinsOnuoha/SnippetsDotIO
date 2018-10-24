@@ -33,4 +33,20 @@ class HomeController extends Controller
 
         return view('home')->with('user', $user);
     }
+
+    public function discover()
+    {
+        $data;
+
+        $talents = User::where('user_type', 'talent')->get();
+        $investors = User::where('user_type', 'inverstor')->get();
+
+        if (Auth::user()->isInvestor()) {
+            $data = $talents;
+        } else {
+            $data = $investors;
+        }
+
+        return view('user.discover')->with('data', $data);
+    }
 }

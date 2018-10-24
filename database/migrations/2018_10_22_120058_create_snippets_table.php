@@ -21,6 +21,8 @@ class CreateSnippetsTable extends Migration
             $table->longText('user_name');
             $table->longText('user_slug');
             $table->enum('file_type', ['video', 'image']);
+            $table->string('snippet_type')->nullable();
+            $table->integer('likes')->default(0);
             $table->longText('file_extension');
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');

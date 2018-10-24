@@ -1,18 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-<<<<<<< HEAD
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-5">
-            @if (session('success'))
-                <div class="alert alert-success text-center" role="alert">
-                    {{ session('success') }}
-                </div>
-            @endif
-        </div>
-    </div>
-=======
             <!-- Page Sidebar -->
             <div class="page-inner">
 
@@ -82,7 +70,6 @@
                                             </span>
                                             @endif
                                         </div>
->>>>>>> 2562a9aeb9139a32ffeafff0cdc299d79f7dbdc1
 
                                         <div class="form-group">
                                             <label for="phone">Phone</label>
@@ -95,26 +82,6 @@
                                             @endif
                                         </div>
 
-<<<<<<< HEAD
-                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="location">Location</label>
-                            <input type="text" name="location" class="form-control" value="{{ $user->profile->location }}" required>
-                        </div>
-                        
-                            @if($user->profile->user_type == "talent")
-                                <div class="form-group">
-                                     <label for="talents">Talents</label>
-                                    <input type="text" name="talents" class="form-control" value="{{ $user->profile->talents }}" data-role="tagsinput" required>
-                                </div>
-                            @endif
-                           
-                        <div class="form-group">
-                            <label for="avatar">Upload Profile Picture</label>
-                            <input type="file" name="avatar" class="form-control" accept="image/*">
-                        </div>
-=======
                                         <div class="form-group">
                                             <label for="avatar">Upload Profile Picture</label>
                                             <input name="avatar" type="file" class="form-control" id="avatar" accept="image/*">
@@ -125,7 +92,6 @@
                                             </span>
                                             @endif
                                         </div>
->>>>>>> 2562a9aeb9139a32ffeafff0cdc299d79f7dbdc1
 
                                         <div class="form-group">
                                             <label for="location">Location</label>
@@ -169,7 +135,7 @@
                                             </select>
 
                                         </div>
-                                        <button class="" type="submit" class="btn btn-primary">Update</button>
+                                        <button class="btn-primary btn-lg btn-block" type="submit">Update</button>
                                     </form>
                                 </div>
                             </div>
@@ -202,57 +168,6 @@
                 </div>
             </div><!-- Page Inner -->
         </main><!-- Page Content -->
-        <nav class="cd-nav-container" id="cd-nav">
-            <header>
-                <h3>Navigation</h3>
-                <a href="#0" class="cd-close-nav">Close</a>
-            </header>
-            <ul class="cd-nav list-unstyled">
-                <li class="cd-selected" data-menu="index">
-                    <a href="{{ route('home') }}">
-                        <span>
-                            <i class="glyphicon glyphicon-home"></i>
-                        </span>
-                        <p>Home</p>
-                    </a>
-                </li>
-                <li data-menu="profile">
-                    <a href="{{ route('profile', Auth::user()->slug) }}">
-                        <span>
-                            <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        <p>Profile</p>
-                    </a>
-                </li>
-                <li data-menu="inbox">
-                    <a href="javsacript:void(0);">
-                        <span>
-                            <i class="glyphicon glyphicon-bell"></i>
-                        </span>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-                <li data-menu="#">
-                    <a href="javsacript:void(0);">
-                        <span>
-                            <i class="glyphicon glyphicon-plus"></i>
-                        </span>
-                        <p>Connections</p>
-                    </a>
-                </li>
-                <li data-menu="#">
-                    <a href="{{ route('logout') }}"  onclick="event.preventDefault();
-                                document.getElementById('logout-form-menu').submit();">
-                        <span>
-                            <i class="fa fa-sign-out m-r-xs"></i>
-                        </span>
-                        <p>{{ __('Logout') }}</p>
-                    </a>
-                    <form id="logout-form-menu" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-            </ul>
-        </nav>
+
         <div class="cd-overlay"></div>
 @endsection

@@ -43,5 +43,32 @@ trait Snippeter
         return response()->json('Failed', 501);
     }
 
-    
+    public function getAllLikes($snippet_id)
+    {
+        $snippet = Snippet::where('id', $snippet_id)->first();
+
+        return $snippet->likes;
+    }
+
+    public function likeSnippet($snippet_id)
+    {
+        $snippet = Snippet::where('id', $snippet_id)->first();
+
+        $snippet->likes += 1;
+        
+        $snippet->save();
+
+        return $snippet->likes;
+    }
+
+    public function unlikeSnippet($snippet_id)
+    {
+        $snippet = Snippet::where('id', $snippet_id)->first();
+
+        $snippet->likes -= 1;
+        
+        $snippet->save();
+
+        return $snippet->likes;
+    }
 }

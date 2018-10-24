@@ -79,8 +79,38 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'delete_friend'
     ]);
 
+    Route::get('/cancle_request/{id}', [
+        'uses' => 'FriendshipsController@cancleRequest',
+        'as' => 'get_connections'
+    ]);
+
     Route::get('/connections', [
         'uses' => 'FriendshipsController@getAllConnections',
         'as' => 'get_connections'
+    ]);
+
+    Route::get('/discover', [
+        'uses' => 'HomeController@discover',
+        'as' => 'discover'
+    ]);
+
+    Route::get('/waiting_requests', [
+        'uses' => 'FriendshipsController@getPendingConnections',
+        'as' => 'get_pending'
+    ]);
+
+    Route::get('/get_likes/{id}', [
+        'uses' => 'SnippetController@getLikes',
+        'as' => 'get_likes'
+    ]);
+
+    Route::get('/like_snippet/{id}', [
+        'uses' => 'SnippetController@likeSnippet',
+        'as' => 'like_snippet'
+    ]);
+
+    Route::get('/unlike_snippet/{id}', [
+        'uses' => 'SnippetController@unlikeSnippet',
+        'as' => 'like_snippet'
     ]);
 });

@@ -117,6 +117,9 @@
                                             <a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a>
                                         </li>
                                         <li role="presentation">
+                                            <a href="{{ route('discover') }}"><i class="fa fa-binoculars"></i>Discover</a>
+                                        </li>
+                                        <li role="presentation">
                                             <a href="{{ route('profile', Auth::user()->slug) }}"><i class="fa fa-user"></i>Profile</a>
                                         </li>
                                         <li role="presentation">
@@ -260,12 +263,14 @@
             </div>
 
             
+            <Notification :id={{ Auth::user()->id }}></Notification>
             @yield('content')
 
+
             
+        <script src="{{ asset('js/app.js') }}"></script>
         <!-- Javascripts -->
         <script src="{{ asset('assets/plugins/jquery/jquery-2.1.4.min.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/pace-master/pace.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-blockui/jquery.blockui.js') }}"></script>
@@ -278,8 +283,8 @@
         <script src="{{ asset('assets/plugins/3d-bold-navigation/js/main.js') }}"></script>
         <script src="{{ asset('assets/js/modern.min.js') }}"></script>
         <script src="{{ asset('js/tagsinput.js') }}"></script>
-<script src="{{ asset('assets/js/modern.min.js') }}"></script> 
+        <script src="{{ asset('assets/js/modern.min.js') }}"></script> 
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzjeZ1lORVesmjaaFu0EbYeTw84t1_nek"></script>
- <script src="{{ asset('assets/js/pages/profile.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/pages/profile.js') }}"></script> --}}
     </body>
 </html>

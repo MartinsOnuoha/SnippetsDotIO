@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\User;
 use Illuminate\Http\Request;
 
 class FriendshipsController extends Controller
@@ -30,7 +31,11 @@ class FriendshipsController extends Controller
     public function addFriend($id)
     {
         // Sending Email, Notifications, Broadcast
-        return Auth::user()->addFriend($id);
+        $resp = Auth::user()->addFriend($id);
+
+        User::find($id)->notify(new \App\Notifications\NewFriendRequest(Auth::user()));
+
+        return $resp;
     }
 
     // Accept Friend
@@ -52,5 +57,17 @@ class FriendshipsController extends Controller
         $friends = Auth::user()->getFriends();
         
         return view('user.connections')->with('friends', $friends);
+    }
+
+    // Cancle Connection request
+    public function cancleRequest($id)
+    {
+        return Auth::user()->canclePendingRequest($id);
+    }
+
+    // Get Pending Request
+    public function getPendingConnections()
+    {
+        return Auth::user()->getPendingRequests();
     }
 }

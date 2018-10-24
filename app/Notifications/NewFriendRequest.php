@@ -11,14 +11,16 @@ class NewFriendRequest extends Notification
 {
     use Queueable;
 
+    public $user;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +31,7 @@ class NewFriendRequest extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'broadcast', 'database'];
     }
 
     /**
@@ -41,9 +43,9 @@ class NewFriendRequest extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('You received a new connection request from ' . $this->user->name)
+                    ->action('View Profile', route('profile', ['slug', $this->user->slug]))
+                    ->line('Thank you for trying out Snippet');
     }
 
     /**
@@ -55,7 +57,8 @@ class NewFriendRequest extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'name' => $this->user->name,
+            'message' => $this->user->name . ' sent you a connection request'
         ];
     }
 }
