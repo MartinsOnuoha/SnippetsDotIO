@@ -4,9 +4,12 @@
 ### Team members
 - Martins Onuoha (martinsvictor.nd@gmail.com)
 - Iyiola Osuagwu (iyiolaosuagwu1@gmail.com)
-- Uchenna Jeremiah 
+- Uchenna Jeremiah (ucejtech@gmail.com)
 
-Section
-Problem
-Proposed Solution
+## Section
+Entertainment
+
+## Problem
+
+## Solution
 Proposed Stack
