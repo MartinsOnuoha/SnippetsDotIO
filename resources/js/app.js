@@ -18,8 +18,9 @@ window.Vue = require('vue');
 Vue.component('Friend', require('./components/Friend.vue'));
 Vue.component('Cancle', require('./components/Cancle.vue'));
 Vue.component('Like', require('./components/Like.vue'));
-Vue.component('Notification', require('./components/Notification.vue'));
+Vue.component('Interest', require('./components/Interest.vue'));
 
 const app = new Vue({
     el: '#app'
 });
+

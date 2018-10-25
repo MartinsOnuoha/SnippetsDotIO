@@ -262,8 +262,6 @@
                 </div><!-- Page Sidebar Inner -->
             </div>
 
-            
-            <Notification :id={{ Auth::user()->id }}></Notification>
             @yield('content')
 
 

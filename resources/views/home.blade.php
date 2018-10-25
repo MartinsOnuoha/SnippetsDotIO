@@ -64,7 +64,7 @@
                                                         <input type="file" style="display: none;" id="snippetfile" name="snippetfile" class="form-control" accept="image/*,video/*" required>
                                                     @endif
         
-                                                    <button type="submit" class="btn btn-default pull-right">Post</button>
+                                                    <button type="submit" class="btn btn-primary pull-right">Post</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -100,20 +100,20 @@
                                                         @endif
                                                     <div class="timeline-options">
                                                         <Like :snippet_id={{ $snippet->id }} :likes={{ $snippet->likes }}></Like>
-                                                    </div>
-                                                    @if($snippet->user_id === Auth::user()->id)
-                                                    <div class="row">
-                                                        <div class="col-md-12">
+                                                        @if($snippet->user_id === Auth::user()->id)
+                                                        <div class="text-right">
                                                             <a href="{{ route('snippet.delete', $snippet->id) }}">
-                                                                <i class="icon-trash text-red" style="margin-right: 40px;"></i>
+                                                                <i class="icon-trash text-red" style="margin-right: 5px;"></i>
                                                             </a>
                                                             <a href="{{ route('snippet.edit', $snippet->id) }}">
                                                                 <i class="icon-pencil ml-5"></i>
                                                             </a>
                                                         </div>
+                                                        @endif
                                                     </div>
-                                                    @else
-                                                        <button class="btn btn-primary btn-block"><i class="fa fa-check m-r-xs"></i>I'm Interested</button>
+
+                                                    @if($snippet->snippet_type === 'Gig')
+                                                        <Interest></Interest>
                                                     @endif
                                                 </div>
                                             </div>
