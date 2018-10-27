@@ -1,6 +1,6 @@
 
 Todo:
-  ☐ Create Unfriend function in Friendable Trait @started(18-10-22 15:17)
+  ✔ Create Unfriend function in Friendable Trait @started(18-10-22 15:17) @done(18-10-27 08:42) @lasted(4d17h25m39s)
   ☐ Add reload single div on reload button click
   ☐ Fix display of duplicated pending requests
   ☐ Add "No current Connections" and "No Gigs posted"
