@@ -4,7 +4,8 @@
             Loading...
         </p>
         <p class="text-center" v-if="!loading">
-            <button class="btn btn-danger btn-block" v-if="status == 'waiting'" @click="cancleRequest"><i class="fa fa-times m-r-xs"></i>Cancle</button>
+            <button class="btn btn-danger btn-block" v-if="status == 'waiting'" @click="CancelRequest"><i class="fa fa-times m-r-xs"></i>Cancel</button>
+            <button class="btn btn-danger btn-block" v-else-if="status == 'pending'" @click="CancelRequest"><i class="fa fa-times m-r-xs"></i>Cancel</button>
         </p>
     </div>
 
@@ -38,10 +39,10 @@
                     });
             },
 
-            cancleRequest() {
+            CancelRequest() {
                 this.loading = true
 
-                axios.get('/cancle_request/' + this.profile_user_id)
+                axios.get('/Cancel_request/' + this.profile_user_id)
                     .then((res) => {
                         if (res.data == 1)
                             this.loading = false;
@@ -49,7 +50,7 @@
                             swal({
                                 position: 'top-end',
                                 type: 'success',
-                                title: 'Connection request cancled',
+                                title: 'Connection request Canceld',
                                 showConfirmButton: false,
                                 timer: 2000
                             });

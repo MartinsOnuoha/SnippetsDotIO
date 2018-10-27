@@ -213,7 +213,7 @@
                                             <p>{{ $pending->name }}</p>
                                         </div>
                                         <div class="col-md-6">
-                                            <Cancle :profile_user_id="{{ $pending->id }}"></Cancle>
+                                            <Cancel :profile_user_id="{{ $pending->id }}"></Cancel>
                                         </div>
                                     </div>
                                     <div class="divider" style="margin-top: 5px;"></div>
@@ -224,8 +224,7 @@
                                             <p>{{ $pending->name }}</p>
                                         </div>
                                         <div class="col-md-6">
-                                            <i class="fa fa-trash text-red"></i>
-                                            <i class="fa fa-check" style="margin-left: 30px;"></i>
+                                            <Cancel :profile_user_id="{{ $pending->id }}"></Cancel>
                                         </div>
                                     </div>
                                     <div class="divider" style="margin-top: 5px;"></div>

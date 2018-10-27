@@ -19,6 +19,9 @@ Route::get('/', function () {
 // Route::get('/accept', function() {
 //     return \App\User::find(1)->acceptFriend(4);
 // });
+Route::get('/noty', function () {
+    return \App\User::find(1)->getAllNotifications();
+});
 
 Auth::routes();
 
@@ -79,8 +82,8 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'delete_friend'
     ]);
 
-    Route::get('/cancle_request/{id}', [
-        'uses' => 'FriendshipsController@cancleRequest',
+    Route::get('/Cancel_request/{id}', [
+        'uses' => 'FriendshipsController@CancelRequest',
         'as' => 'get_connections'
     ]);
 

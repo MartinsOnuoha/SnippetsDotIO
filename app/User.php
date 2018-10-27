@@ -6,6 +6,7 @@ use App\Traits\Friendable;
 use App\Traits\Investor;
 use App\Traits\Talent;
 use App\Traits\Snippeter;
+use App\Traits\Notification;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -18,6 +19,7 @@ class User extends Authenticatable
     use Investor;
     use Talent;
     use Snippeter;
+    use Notification;
 
     /**
      * The attributes that are mass assignable.
@@ -47,8 +49,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Friendship');
     }
 
-    public function notifications()
+    public function notify()
     {
-        return $this->hasMany('App\Notification');
+        return $this->hasMany('App\Notify');
     }
 }

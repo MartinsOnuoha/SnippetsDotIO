@@ -55,6 +55,7 @@ class ProfilesController extends Controller
 
     public function addSnippet(Request $req)
     {   
+        $filetype;
         
         $image = $req->file('snippetfile');
         $video_types = array("mp4", "mov", "ogg");

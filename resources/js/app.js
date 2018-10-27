@@ -16,7 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('Friend', require('./components/Friend.vue'));
-Vue.component('Cancle', require('./components/Cancle.vue'));
+Vue.component('Cancel', require('./components/Cancel.vue'));
 Vue.component('Like', require('./components/Like.vue'));
 Vue.component('Interest', require('./components/Interest.vue'));
 

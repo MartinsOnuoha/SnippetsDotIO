@@ -21,9 +21,9 @@ trait Friendable
         if ($this->isFriendsWith($user_requested_id)) {
             return response()->json('Already Friends with this user');
         }
-        // if ($this->hasPendingRequestFrom($user_requested_id) === 1) {
-        //     return $this->acceptFriend($user_requested_id);
-        // }
+        if ($this->hasPendingRequestFrom($user_requested_id) === 1) {
+            return $this->acceptFriend($user_requested_id);
+        }
 
         $Friendship = Friendship::create([
             'requester' => $this->id,
@@ -92,16 +92,27 @@ trait Friendable
     public function getPendingRequests()
     {
         $pending_friends = array();
+        $waiting_friends = array();
 
-        $friendships = Friendship::where('status', 0)
+        $friendships1 = Friendship::where('status', 0)
                                 ->where('user_requested', $this->id)
                                 ->get();
-
-        foreach ($friendships as $friendship):
+        foreach ($friendships1 as $friendship):
             array_push($pending_friends, \App\User::find($friendship->requester));
         endforeach;
+        
 
-        return $pending_friends;
+        $friendships2 = Friendship::where('status', 0)
+                                ->where('requester', $this->id)
+                                ->get();
+        foreach ($friendships2 as $friendship):
+            array_push($pending_friends, \App\User::find($friendship->user_requested));
+        endforeach;
+
+
+
+        return array_merge($pending_friends, $waiting_friends);
+    
     }
     
 
@@ -188,15 +199,27 @@ trait Friendable
         return count($this->getFriends());
     }
 
-    // Cancle pending Request
-    public function canclePendingRequest($user_requested_id)
+    // Cancel pending Request
+    public function CancelPendingRequest($user_requested_id)
     {
-        Friendship::where('status', 0)
-                    ->where('user_requested', $user_requested_id)
-                    ->where('requester', $this->id)
-                    ->delete();
-        
-        return 1;
+        $F1 = Friendship::where('status', 0)
+                        ->where('user_requested', $user_requested_id)
+                        ->where('requester', $this->id)
+                        ->first();
+
+        $F2 = Friendship::where('status', 0)
+                        ->where('user_requested', $this->id)
+                        ->where('requester', $user_requested_id)
+                        ->first();
+       
+        if ($F1) {
+            $F1->delete();
+            return 1;
+        } else if ($F2) {
+            $F2->delete();
+            return 1;
+        }
+        return 0;
     }
 
     // Unfriend
@@ -225,12 +248,5 @@ trait Friendable
         }
 
         return 0;
-    }
-
-    public function getNotifications()
-    {
-        $notifications = Notify::where('user_id', $this->id);
-
-        return $notifications;
     }
 }

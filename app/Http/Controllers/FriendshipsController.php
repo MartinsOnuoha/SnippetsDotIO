@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Notify;
+
 use Illuminate\Http\Request;
 
 class FriendshipsController extends Controller
@@ -30,10 +32,25 @@ class FriendshipsController extends Controller
     // Add Friend
     public function addFriend($id)
     {
-        // Sending Email, Notifications, Broadcast
         $resp = Auth::user()->addFriend($id);
 
+        // Notify Receiver
+        Notify::create([
+            'user_id' => $id,
+            'type' => 'info',
+            'title' => 'New connection request',
+            'message' => Auth::user()->name . ' wants to connect with you'
+        ]);
+        
+        // Notify Sender
+        Notify::create([
+            'user_id' => Auth::user()->id,
+            'type' => 'info',
+            'title' => 'Connection request sent',
+            'message' => 'You have sent a request to ' . User::find($id)->name
+        ]);
 
+        // Sending Email, Notifications, Broadcast
         // User::find($id)->notify(new \App\Notifications\NewFriendRequest(Auth::user()));
 
         return $resp;
@@ -64,10 +81,10 @@ class FriendshipsController extends Controller
         return view('user.connections')->with('friends', $friends);
     }
 
-    // Cancle Connection request
-    public function cancleRequest($id)
+    // Cancel Connection request
+    public function CancelRequest($id)
     {
-        return Auth::user()->canclePendingRequest($id);
+        return Auth::user()->CancelPendingRequest($id);
     }
 
     // Get Pending Request
