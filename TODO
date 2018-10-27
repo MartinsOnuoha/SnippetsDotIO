@@ -1,3 +1,17 @@
 
 Todo:
   ☐ Create Unfriend function in Friendable Trait @started(18-10-22 15:17)
+  ☐ Add reload single div on reload button click
+  ☐ Fix display of duplicated pending requests
+  ☐ Add "No current Connections" and "No Gigs posted"
+  ☐ Delete Notifications
+  ☐ Get actual latest Snippets (by created_at)
+  ☐ Get actual top investors (with highest number of GIgs posted)
+  ☐ Get latest Gigs (by created_at)
+  ☐ Finish up chat UI
+  ☐ Reduce notification count per notification viewed
+  ☐ Fix image upload not showing.
+  ☐ Search Functionality
+  ☐ View all Notification Page
+  ☐ Fix dropdown issues
+  ☐ Fix mobile view dropdown
