@@ -61,6 +61,7 @@ class ProfilesController extends Controller
         $video_types = array("mp4", "mov", "ogg");
         $image_types = array("jpg", "gif", "png", "bmp");
         $snippetfilename = time() . '.' . $image->getClientOriginalExtension();
+        
         if(in_array($image->getClientOriginalExtension(), $image_types)) {
             $filetype = "image";
         }elseif (in_array($image->getClientOriginalExtension(), $video_types)) {
