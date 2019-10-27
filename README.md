@@ -4,7 +4,7 @@
 
 <img src="https://scontent-los2-1.xx.fbcdn.net/v/t1.0-9/47112787_346476449480203_4598668148646871040_n.png?_nc_cat=106&_nc_ht=scontent-los2-1.xx&oh=f483373578346c185fef11388108272a&oe=5C719716" />
 
-### Team members
+### Contributors
 
 - Martins Onuoha (martinsvictor.nd@gmail.com)
 - Iyiola Osuagwu (iyiolaosuagwu1@gmail.com)
